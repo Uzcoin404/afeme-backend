@@ -15,10 +15,11 @@ class CreateRetingsTable extends Migration
     {
         Schema::create('retings', function (Blueprint $table) {
             $table->id();
-            $table->integer('post_id');
-            $table->integer('userId');
+            $table->integer('author');
+            $table->integer('user_id')->nullable();
+            $table->integer('post_id')->nullable();
             $table->integer('reting')->nullable();
-            $table->integer('comment');
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

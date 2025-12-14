@@ -15,9 +15,9 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('chat_id');
-            $table->string('to');
-            $table->text('message');
+            $table->string('from')->nullable();
+            $table->string('to')->nullable();
+            $table->string('message')->nullable();
             $table->string('parentID')->nullable();
             $table->timestamps();
         });

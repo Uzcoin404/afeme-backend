@@ -82,13 +82,14 @@ class Product extends Model
         return $this->hasMany(Like::class, 'post_id');
     }
     public function configuretion($som){
-        $json = json_decode(file_get_contents('https://nbu.uz/uz/exchange-rates/json/'), true);
+        $json = json_decode(file_get_contents('https://cbu.uz/ru/arkhiv-kursov-valyut/json/'), true);
         foreach($json as $key=>$valeu){
-            if( $valeu['code'] == 'USD' ){
-                $usd = $valeu['cb_price'];
+            if( $valeu['Ccy'] == 'USD' ){
+                $usd = $valeu['Rate'];
             }
         }
-        return $som / $usd;
+        if(isset($usd)) return $som / $usd;
+        else return $som;
     }
     public function like($likes){
           

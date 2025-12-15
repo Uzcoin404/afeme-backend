@@ -15,7 +15,7 @@ use App\Models\Client;
 use App\Helpers\Traits\ApiResponcer;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\PostResource;
-
+use Illuminate\Support\Facades\Storage; // Added for correct storage handling
 
 class GetController extends Controller
 {
@@ -23,14 +23,14 @@ class GetController extends Controller
 
     public function region(){
         $data=Region::with('citys')->get();
-      
+     
         if(count($data)){
             $massage="Ma'lumot jo'natildi";
             return $this->success($data, $massage, 200);
         }else{
             $massage="Ma'lumot topilmadi";
             return $this->error($massage, 404, null);
-        }        
+        }         
     }
     
     
@@ -42,7 +42,7 @@ class GetController extends Controller
         }else{
             $massage="Ma'lumot topilmadi";
             return $this->error($massage, 404, null);
-        }  
+        }   
     }
     public function sale(){
         $data=Sale::all();
@@ -52,7 +52,7 @@ class GetController extends Controller
         }else{
             $massage="Ma'lumot topilmadi";
             return $this->error($massage, 404, null);
-        }  
+        }   
     }
     public function repair(){
         $data=Repair::all();
@@ -62,7 +62,7 @@ class GetController extends Controller
         }else{
             $massage="Ma'lumot topilmadi";
             return $this->error($massage, 404, null);
-        }  
+        }   
     }
     public function materials(){
         $data=Material::all();
@@ -72,7 +72,7 @@ class GetController extends Controller
         }else{
             $massage="Ma'lumot topilmadi";
             return $this->error($massage, 404, null);
-        }  
+        }   
     }
     public function popular($id){
 
@@ -98,16 +98,25 @@ class GetController extends Controller
         }else{
             $massage="Ma'lumot topilmadi";
             return $this->error($massage, 404, null);
-        }  
+        }   
     }
     public function service(Request $request){
        
         if($request->key == "Service For C Group"){
             
             if($request->hasFile('file')){ 
+                // ORIGINAL CODE:
+                /*
                 $file=$request->file;
                 $url='http://ali98.uz/files/'.time().microtime(true) - LARAVEL_START.'.'.$file->getClientOriginalExtension();
                 $file->move('files/',$url);
+                
+                return $this->success($url);
+                */
+                
+                // MODIFIED CODE to use storage:
+                $path = $request->file('file')->store('files', 'public');
+                $url = \Illuminate\Support\Facades\Storage::url($path);
                 
                 return $this->success($url);
             }else{
@@ -125,11 +134,11 @@ class GetController extends Controller
         if($request->key == "Service For C Group"){
             
             if($request->urls){ 
-                foreach($urls as $url){
+                foreach($request->urls as $url){ // Changed $urls to $request->urls as $urls was undefined
                     $string = \Str::of($url)->remove( "http://ali98.uz/files/");
                     $check = \File::delete('files/'.$string);
                     if(!$check){
-                        return "'$urel' mavjud emas";
+                        return "'$url' mavjud emas"; // Changed $urel to $url
                     }
                 }
                  return $this->success(true);

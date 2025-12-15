@@ -8,12 +8,12 @@ use App\Models\Advertisement;
 
 class AdvertisementController extends Controller
 {
- function __construct()
+    function __construct()
     {
-         $this->middleware('permission:advertisement-list|advertisement-create|advertisement-edit|advertisement-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:advertisement-create', ['only' => ['create','store']]);
-         $this->middleware('permission:advertisement-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:advertisement-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:advertisement-list|advertisement-create|advertisement-edit|advertisement-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:advertisement-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:advertisement-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:advertisement-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -48,10 +48,8 @@ class AdvertisementController extends Controller
         $data = $request->all();
 
         if ($request->file('image')) {
-            $file = $request->file('image');
-            $image_name = time() . $file->getClientOriginalName();
-            $file->move('admin2/advertisements/', $image_name);
-            $data['image'] ="http://ali98.uz/admin2/advertisements/".$image_name;
+            $path = $request->file('image')->store('advertisements', 'public');
+            $data['image'] = $path;
         }
 
         Advertisement::create($data);
@@ -94,10 +92,17 @@ class AdvertisementController extends Controller
         $data = $request->all();
 
         if ($request->file('image')) {
+            // ORIGINAL CODE:
+            /*
             $file = $request->file('image');
             $image_name = time() . $file->getClientOriginalName();
             $file->move('admin2/advertisements/', $image_name);
-            $data['image'] ="http://ali98.uz/admin2/advertisements/".$image_name;
+            $data['image'] = "http://ali98.uz/admin2/advertisements/" . $image_name;
+            */
+            
+            // MODIFIED CODE to use storage like in 'store' method:
+            $path = $request->file('image')->store('advertisements', 'public');
+            $data['image'] = $path;
         }
 
         $advertisement = Advertisement::find($id);

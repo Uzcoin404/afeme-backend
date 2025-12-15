@@ -32,7 +32,7 @@
               @if ($address->icon == null)
                   
                @else
-                   <img src="/admin2/addresses/{{ $address->icon }}" width="150">
+                   <img src="/storage/{{ $address->icon }}" width="150">
                @endif
          </div>
      </div>

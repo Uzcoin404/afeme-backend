@@ -74,7 +74,7 @@
                                         @if ($network->icon == null)
                                             <td>Ikonka yo'q</td>
                                         @else
-                                            <td><img src="/admin2/networks/{{ $network->icon }}" width="150"></td>
+                                            <td><img src="/storage/{{ $network->icon }}" width="150"></td>
                                         @endif
                                         <td>{{ $network->created_at->format('Y-m-d'); }}</td>
                                         <td>{{ $network->updated_at->format('Y-m-d'); }}</td>

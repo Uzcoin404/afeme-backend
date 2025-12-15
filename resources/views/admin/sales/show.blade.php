@@ -28,6 +28,6 @@
                 </label>
                 {{ $sale->name_ru }}
             </div>
-            <img src="/admin2/sales/{{ $sale->icon }}" width="200">
+            <img src="/storage/{{ $sale->icon }}" width="200">
          </div>
      @endsection

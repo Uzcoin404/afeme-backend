@@ -28,7 +28,7 @@
                <div class="form__imgUploader">
                     <div class="form__wrapper">
                         <div class="form__image">
-                            <img src="/admin2/categories/{{ $category->icon }}" alt="" class="form__img">
+                            <img src="/storage/{{ $category->icon }}" alt="" class="form__img">
                         </div>
                         <div class="formUploader__content">
                             <div class="formUploader__icon"><i class="fas fa-cloud-upload-alt"></i></div>

@@ -11,10 +11,10 @@ class RegionController extends Controller
 
     function __construct()
     {
-         $this->middleware('permission:region-list|region-create|region-edit|region-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:region-create', ['only' => ['create','store']]);
-         $this->middleware('permission:region-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:region-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:region-list|region-create|region-edit|region-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:region-create', ['only' => ['create','store']]);
+        $this->middleware('permission:region-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:region-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -48,10 +48,17 @@ class RegionController extends Controller
         $data=$request->all();
         
        if($request->file('image')){
+            // ORIGINAL CODE:
+            /*
             $file=$request->file('image');
             $image_name=time().$file->getClientOriginalName();
             $file->move('admin2/regions/', $image_name);
             $data['image']="http://ali98.uz/admin2/regions/".$image_name;
+            */
+
+            // MODIFIED CODE:
+            $path = $request->file('image')->store('regions', 'public');
+            $data['image'] = $path;
         }
 
         Region::create($data);
@@ -95,10 +102,17 @@ class RegionController extends Controller
         $data=$request->all();
 
         if($request->file('image')){
+            // ORIGINAL CODE:
+            /*
             $file=$request->file('image');
             $image_name=time().$file->getClientOriginalName();
             $file->move('admin2/regions/', $image_name);
             $data['image']="http://ali98.uz/admin2/regions/".$image_name;
+            */
+
+            // MODIFIED CODE:
+            $path = $request->file('image')->store('regions', 'public');
+            $data['image'] = $path;
         }
         
         $region=Region::find($id);

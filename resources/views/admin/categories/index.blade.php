@@ -69,7 +69,7 @@
                                     <tr style="text-align-last: center">
                                         <th>{{ $loop->iteration }}</th>
                                         <th>{{ $category->name_uz }}</th>
-                                        <td><img src="/admin2/categories/{{ $category->icon }}" width="150"></td>
+                                        <td><img src="/storage/{{ $category->icon }}" width="150"></td>
                                         <td>{{ $category->created_at->format('Y-m-d'); }}</td>
                                         <td>{{ $category->updated_at->format('Y-m-d'); }}</td>
                                         <td style="width: 50px">

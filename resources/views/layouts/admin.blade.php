@@ -41,7 +41,7 @@
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             @if (auth()->user()->image)
-                                <img alt="image" src="/admin2/adminimage/{{ auth()->user()->image }}"
+                                <img alt="image" src="/storage/{{ auth()->user()->image }}"
                                     class="user-img-radious-style">
                             @else
                                 <img alt="image" src="/admin.png" class="user-img-radious-style">

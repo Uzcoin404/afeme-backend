@@ -26,7 +26,7 @@
               @if ($network->icon == null)
                   
                @else
-                   <img src="/admin2/networks/{{ $network->icon }}" width="150">
+                   <img src="/storage/{{ $network->icon }}" width="150">
                @endif
          </div>
      </div>

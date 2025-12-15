@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage; // <-- ADDED
 
 class UserController extends Controller
 {
@@ -24,6 +25,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -52,7 +54,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-       
+        
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -63,12 +65,19 @@ class UserController extends Controller
         $input=$request->all();
         $input['password']=Hash::make($input['password']);
 
-            if($request->file('image')){
-            $file=$request->file('image');
-            $icon_name=time().$file->getClientOriginalName();
-            $file->move('admin2/adminimage/', $icon_name);
-            $input['image']=$icon_name;
-        }
+             if($request->file('image')){
+                 // ORIGINAL CODE:
+                 /*
+                 $file=$request->file('image');
+                 $icon_name=time().$file->getClientOriginalName();
+                 $file->move('admin2/adminimage/', $icon_name);
+                 $input['image']=$icon_name;
+                 */
+
+                 // MODIFIED CODE:
+                 $path = $request->file('image')->store('user-images', 'public');
+                 $input['image'] = $path;
+             }
         
         
         $user=User::create($input);
@@ -126,12 +135,19 @@ class UserController extends Controller
             $input=Arr::except($input,array('password'));
 
         }
-       
+        
         if($request->file('image')){
-            $file=$request->file('image');
-            $icon_name=time().$file->getClientOriginalName();
-            $file->move('admin2/adminimage/', $icon_name);
-            $input['image']=$icon_name;
+             // ORIGINAL CODE:
+             /*
+             $file=$request->file('image');
+             $icon_name=time().$file->getClientOriginalName();
+             $file->move('admin2/adminimage/', $icon_name);
+             $input['image']=$icon_name;
+             */
+
+             // MODIFIED CODE:
+             $path = $request->file('image')->store('user-images', 'public');
+             $input['image'] = $path;
         }
 
         $user=User::find($id);
@@ -152,6 +168,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        // NOTE: The original code does not delete the user image file upon deletion.
+        // To properly delete the file, you would need to retrieve the user, 
+        // use Storage::delete($user->image), and then delete the user record.
         User::find($id)->delete();
         return redirect()->route('admin.users.index')
         ->with('success3', "Muvaffaqiyatli o'chirildi");

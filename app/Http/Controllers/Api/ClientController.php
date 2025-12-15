@@ -47,60 +47,61 @@ class ClientController extends Controller
            
             $name = SMS::where('name',$request->email)->first();
              if(!empty($name)){
-                $name->update(['name'=>$request->email, 'code'=>$code]);
-                
-            }else{
-                SMS::create(['name'=>$request->email, 'code'=>$code]);
+                 $name->update(['name'=>$request->email, 'code'=>$code]);
                  
-            }
+             }else{
+                 SMS::create(['name'=>$request->email, 'code'=>$code]);
+                 
+             }
             
             Mail::to($client->email)->send(new Forgot($code));
             return $this->success(null,$code."-code jonatildi") ;
-           
+            
         }
-  
+ 
     }
     
     public function sms(Request $request){
         
              $data=Validator::make($request->all(), [
         
-            'phone'=>'required  | unique:clients', 
-            
-        ]);
+             'phone'=>'required  | unique:clients', 
+             
+         ]);
         
-        if($data->fails()){
+         if($data->fails()){
 
-            return $this->error(null, 400, $data->errors());
+             return $this->error(null, 400, $data->errors());
 
-        }else{
-           
+         }else{
             
-                $code = \Str::random(4);
-                $phone = $request->phone;
-               
-                $name = SMS::where('name',$request->phone)->first();
+             
+                 $code = \Str::random(4);
+                 $phone = $request->phone;
                 
-                //   $basic  = new \Vonage\Client\Credentials\Basic("3d3b3b58", "cAtr2QfrvYI1Cwvo");
-                //   $client = new \Vonage\Client($basic);
-                
-                // $response = $client->sms()->send(
-                //     new \Vonage\SMS\Message\SMS("998907823396", 'AFEME', $code)
-                // );
-                
-                if(!empty($name)){
-                    $name->update(['name'=>$request->phone, 'code'=>$code]);
-                    return $this->success(null,$code."-code jonatildi") ;
-                }else{
-                    SMS::create(['name'=>$request->phone, 'code'=>$code]);
+                 $name = SMS::where('name',$request->phone)->first();
+                 
+                 //  $basic  = new \Vonage\Client\Credentials\Basic("3d3b3b58", "cAtr2QfrvYI1Cwvo");
+                 //  $client = new \Vonage\Client($basic);
+                 
+                 // $response = $client->sms()->send(
+                 //  //  new \Vonage\SMS\Message\SMS("998907823396", 'AFEME', $code)
+                 // );
+                 
+                 if(!empty($name)){
+                     $name->update(['name'=>$request->phone, 'code'=>$code]);
                      return $this->success(null,$code."-code jonatildi") ;
-                }
-          
+                 }else{
+                     SMS::create(['name'=>$request->phone, 'code'=>$code]);
+                      return $this->success(null,$code."-code jonatildi") ;
+                 }
+            
         
+             
             
             
           
-        }
+         }
     }
     public function resset(Request $request){
         $code = SMS::where('name',$request->email)->first();
@@ -123,36 +124,36 @@ class ClientController extends Controller
     public function create(Request $request)
     {  
    
-            $data=Validator::make($request->all(), [
+             $data=Validator::make($request->all(), [
+           
+             'phone'=>'required', 
+             
+         ]);
          
-            'phone'=>'required', 
-            
-        ]);
-        
-        if($data->fails()){
+         if($data->fails()){
 
-            return $this->error(null, 400, $data->errors());
+             return $this->error(null, 400, $data->errors());
 
-        }
-        
-        // $code = SMS::where('name',$request->phone)->first();
+         }
+         
+         // $code = SMS::where('name',$request->phone)->first();
    
-        // if($request->code == $code->code or $request->code == '1234'){
-          
-            $data=[
-                'phone' => $request->phone,
-                'password' => $request->password
-            ];
+         // if($request->code == $code->code or $request->code == '1234'){
+           
+             $data=[
+                 'phone' => $request->phone,
+                 'password' => $request->password
+             ];
     
-            if(auth('client')->attempt($data)){
+             if(auth('client')->attempt($data)){
                   $token=auth()->guard('client')->user()->createToken('Laravel')->accessToken;
                   return $this->success($token, null, 201);  
-            }else{
-                return $this->error(null, 400, 'parol xato');
-            }
-        // }else{
-        //     return $this->error(null, 400);
-        // }
+             }else{
+                 return $this->error(null, 400, 'parol xato');
+             }
+         // }else{
+         //  //  return $this->error(null, 400);
+         // }
     
     }
 
@@ -166,43 +167,50 @@ class ClientController extends Controller
 
     public function store( Request $request){
 
-      $data=Validator::make($request->all(), [
-            'name'=>'required ', 
-            'lastname'=>'required ',
-            'phone'=>'required | unique:clients', 
-            'user_type'=>'required  ',
+       $data=Validator::make($request->all(), [
+             'name'=>'required ', 
+             'lastname'=>'required ',
+             'phone'=>'required | unique:clients', 
+             'user_type'=>'required  ',
 
-        ]);
-        
-        if($data->fails()){
+         ]);
+         
+         if($data->fails()){
 
-            return $this->error(null, 400, $data->errors());
+             return $this->error(null, 400, $data->errors());
 
-        }
-        
-            $client=$request->all(); 
-                
-            if($request->file('image')){
-                $file=$request->file('image');
-                $image_name=time().$file->getClientOriginalName();
-                $file->move('admin2/user/', $image_name);
-                $client['image']="http://ali98.uz/admin2/user/".$image_name;
-            }
+         }
+         
+              $client=$request->all(); 
+                 
+             if($request->file('image')){
+                 // ORIGINAL CODE:
+                 /*
+                 $file=$request->file('image');
+                 $image_name=time().$file->getClientOriginalName();
+                 $file->move('admin2/user/', $image_name);
+                 $client['image']="http://ali98.uz/admin2/user/".$image_name;
+                 */
+                 
+                 // MODIFIED CODE:
+                 $path = $request->file('image')->store('user', 'public');
+                 $client['image'] = $path;
+             }
+             
+             // $client = $request->all();
+             $client['password'] = Hash::make($request->password);
+             $code = SMS::where('name',$request->phone)->first();
             
-            // $client = $request->all();
-            $client['password'] = Hash::make($request->password);
-            $code = SMS::where('name',$request->phone)->first();
-           
-        if($request->code == $code->code or $request->code == '1234'){
+         if($request->code == $code->code or $request->code == '1234'){
     
-            $data = Client::create($client);
-       
-            $token=$data->createToken('Laravel')->accessToken;
-            return $this->success($token, null, 201);
-       
-        }else{
-            return $this->error(null, 400, "parol xato");
-        }
+             $data = Client::create($client);
+        
+             $token=$data->createToken('Laravel')->accessToken;
+             return $this->success($token, null, 201);
+        
+         }else{
+             return $this->error(null, 400, "parol xato");
+         }
     }
 
     /**
@@ -254,46 +262,46 @@ class ClientController extends Controller
             $massage=" .!. Bu ma'lumotlar sizga tegshli emas";
             return $this->error($massage, 303);
         }
-      
+     
         $data=Validator::make($request->all(), [
-            'name'=>'required  ', 
-            'lastname'=>'required ',
-            // 'passport'=>'required ',
-            'user_type'=>'required ',
-            'region_id'=>'required  ',
-            // 'longitude'=>'required  ',
-            // 'latitude'=>'required ',
-        ]);
-        
-        if($data->fails()){
-            return $this->error(null, 400, $data->errors());
-        }
+             'name'=>'required  ', 
+             'lastname'=>'required ',
+             // 'passport'=>'required ',
+             'user_type'=>'required ',
+             'region_id'=>'required  ',
+             // 'longitude'=>'required  ',
+             // 'latitude'=>'required ',
+         ]);
          
+         if($data->fails()){
+             return $this->error(null, 400, $data->errors());
+         }
+          
         $user = Client::find($id);
         
         if($request->phone !== $user->phone){
-  
-            $data=Validator::make($request->all(), [
-                'phone'=>'required | unique:clients', 
-            ]);
+ 
+             $data=Validator::make($request->all(), [
+                 'phone'=>'required | unique:clients', 
+             ]);
+             
+             if($data->fails()){
+                 return $this->error(null, 400, $data->errors());
+             }
+         }
             
-            if($data->fails()){
-                return $this->error(null, 400, $data->errors());
-            }
-        }
-           
         //  $set=$request->all();
 
         // if($request->file('image')){
         
         
-            // $file=$request->file('image');
-            // $image_name=date('Y-m-d-H-i-s');
-            // $image_name=time().$file->getClientOriginalName();
-            // $file->move('admin2/user/', $image_name);
-            // $set['image']=$file;
-            
-              
+             // $file=$request->file('image');
+             // $image_name=date('Y-m-d-H-i-s');
+             // $image_name=time().$file->getClientOriginalName();
+             // $file->move('admin2/user/', $image_name);
+             // $set['image']=$file;
+             
+             
         $user=Client::find($id);
         $user->update($request->all());
         $user->save();
@@ -336,13 +344,13 @@ class ClientController extends Controller
     }
     public function logout(Request $request){
             
-            if(auth()->guard('api')->user()){
-                auth()->guard('api')->user()->token()->revoke();
-                return $this->success(['message' => 'Successfully logged out'
-            ], 200);
-            }else{
-                return $this->error(null, 400);
-            }
-        
+             if(auth()->guard('api')->user()){
+                 auth()->guard('api')->user()->token()->revoke();
+                 return $this->success(['message' => 'Successfully logged out'
+             ], 200);
+             }else{
+                 return $this->error(null, 400);
+             }
+         
     }
 }

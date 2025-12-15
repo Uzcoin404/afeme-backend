@@ -76,7 +76,7 @@
                                         @if ($address->icon == null)
                                             <td>Ikonka yo'q</td>
                                         @else
-                                            <td><img src="/admin2/addresses/{{ $address->icon }}" width="150"></td>
+                                            <td><img src="/storage/{{ $address->icon }}" width="150"></td>
                                         @endif
                                         <td>{{ $address->created_at->format('Y-m-d'); }}</td>
                                         <td>{{ $address->updated_at->format('Y-m-d'); }}</td>

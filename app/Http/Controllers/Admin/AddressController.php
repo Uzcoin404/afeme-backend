@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Address;
+use Illuminate\Support\Facades\Storage; // <-- ADDED
 
 class AddressController extends Controller
 {
@@ -49,13 +50,20 @@ class AddressController extends Controller
         $data = $request->all();
 
         if ($request->file('icon')) {
+            // ORIGINAL CODE:
+            /*
             $file = $request->file('icon');
             $icon_name = time() . $file->getClientOriginalName();
             $file->move('admin2/addresses/', $icon_name);
             $data['icon'] = $icon_name;
+            */
+            
+            // MODIFIED CODE:
+            $path = $request->file('icon')->store('addresses', 'public');
+            $data['icon'] = $path;
         }
         
-         Address::create($data);
+          Address::create($data);
 
         return redirect()->route('admin.addresses.index')->with('success1', 'Muvaffaqiyatli yozildi');
     }
@@ -96,10 +104,17 @@ class AddressController extends Controller
         $data = $request->all();
 
         if ($request->file('icon')) {
+            // ORIGINAL CODE:
+            /*
             $file = $request->file('icon');
             $icon_name = time() . $file->getClientOriginalName();
             $file->move('admin2/addresses/', $icon_name);
             $data['icon'] = $icon_name;
+            */
+
+            // MODIFIED CODE:
+            $path = $request->file('icon')->store('addresses', 'public');
+            $data['icon'] = $path;
         }
 
         $address = Address::find($id);
@@ -116,6 +131,10 @@ class AddressController extends Controller
      */
     public function destroy($id)
     {
+        // NOTE: If the original code was expected to delete the icon file, 
+        // that logic was missing. To properly delete a stored file, you would 
+        // need to load the address model, delete the file using Storage::delete(), 
+        // and then destroy the model record.
         Address::destroy($id);
         return redirect()->route('admin.addresses.index')->with('success3', "Muvaffaqiyatli o'chirildi");
     }

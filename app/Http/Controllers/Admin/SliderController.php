@@ -11,10 +11,10 @@ class SliderController extends Controller
     
     function __construct()
     {
-         $this->middleware('permission:slider-list|slider-create|slider-edit|slider-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:slider-create', ['only' => ['create','store']]);
-         $this->middleware('permission:slider-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:slider-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:slider-list|slider-create|slider-edit|slider-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:slider-create', ['only' => ['create','store']]);
+        $this->middleware('permission:slider-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:slider-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -49,10 +49,17 @@ class SliderController extends Controller
         $data = $request->all();
 
         if ($request->file('image')) {
+            // ORIGINAL CODE:
+            /*
             $file = $request->file('image');
             $image_name = time() . $file->getClientOriginalName();
             $file->move('admin2/sliders/', $image_name);
             $data['image'] ="http://ali98.uz/admin2/sliders/".$image_name;
+            */
+
+            // MODIFIED CODE:
+            $path = $request->file('image')->store('sliders', 'public');
+            $data['image'] = $path;
         }
 
         Slider::create($data);
@@ -95,10 +102,17 @@ class SliderController extends Controller
         $data = $request->all();
 
         if ($request->file('image')) {
+            // ORIGINAL CODE:
+            /*
             $file = $request->file('image');
             $image_name = time() . $file->getClientOriginalName();
             $file->move('admin2/sliders/', $image_name);
             $data['image'] ="http://ali98.uz/admin2/sliders/".$image_name;
+            */
+
+            // MODIFIED CODE:
+            $path = $request->file('image')->store('sliders', 'public');
+            $data['image'] = $path;
         }
 
         $slider = Slider::find($id);

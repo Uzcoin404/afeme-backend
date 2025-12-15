@@ -31,7 +31,7 @@
                                @if ($address->icon == null)
                                     <img src=" " alt="" class="form__img">
                                @else
-                                   <img src="/admin2/addresses/{{ $address->icon }}" alt="" class="form__img">
+                                   <img src="/storage/{{ $address->icon }}" alt="" class="form__img">
                                @endif
                           
                         </div>

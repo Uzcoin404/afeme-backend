@@ -49,7 +49,7 @@
                @if ($user->image == null)
                     <img alt="image" src="/admin.png" width="100px" class="user-img-radious-style">
                @else
-                    <img src="/admin2/adminimage/{{ $user->image }}" width="150">
+                    <img src="/storage/{{ $user->image }}" width="150">
                @endif
             </div>
         </div>

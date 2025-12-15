@@ -53,7 +53,7 @@
                            @if ($user->image == null)
                                <img src="/admin.png" alt="" class="form__img">
                            @else
-                               <img src="/admin2/adminimage/{{ $user->image }}" alt="" class="form__img">
+                               <img src="/storage/{{ $user->image }}" alt="" class="form__img">
                            @endif
                         </div>
                         <div class="formUploader__content">

@@ -74,7 +74,7 @@
                                          @if ($user->image == null)
                                             <td><img alt="image" src="/admin.png" width="150px" class="user-img-radious-style"></td>
                                         @else
-                                            <td><img src="/admin2/adminimage/{{ $user->image }}" width="150"></td>
+                                            <td><img src="/storage/{{ $user->image }}" width="150"></td>
                                         @endif
                                        
                                         <td>

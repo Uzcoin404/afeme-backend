@@ -41,7 +41,7 @@
                     <button type="button" class="customBtn">Rasim tanlang</button>
                 </div>
           
-                <img src="/admin2/regions/{{ $region->image }}" width="200" alt="">
+                <img src="/storage/{{ $region->image }}" width="200" alt="">
                  </div>
                   <div class="card-footer">
                 <button style="margin-left: 1px ;" type="submit" class="btn btn-outline-primary col-lg-1"> <i class="fas fa-edit"></i></button>

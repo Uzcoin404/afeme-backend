@@ -27,7 +27,7 @@
                               @if ($network->icon == null)
                                   <img src="" alt="" class="form__img">
                               @else
-                                  <img src="/admin2/networks/{{ $network->icon }}" alt="" class="form__img">
+                                  <img src="/storage/{{ $network->icon }}" alt="" class="form__img">
                               @endif
                         </div>
                         <div class="formUploader__content">

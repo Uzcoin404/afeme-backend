@@ -70,7 +70,7 @@
                                     <tr style="text-align-last: center">
                                         <th style="width: 25px">{{ $loop->iteration }}</th>
                                         <th>{{ $sale->name_uz }}</th>
-                                        <td><img src="/admin2/sales/{{ $sale->icon }}" width="150"></td>
+                                        <td><img src="/storage/{{ $sale->icon }}" width="150"></td>
                                         <td>{{ $sale->created_at->format('Y-m-d'); }}</td>
                                         <td>{{ $sale->updated_at->format('Y-m-d'); }}</td>
                                         <td style="width: 50px">

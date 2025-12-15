@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sale;
+use Illuminate\Support\Facades\Storage; // <-- ADDED
 
 class SaleController extends Controller
 {
@@ -50,10 +51,17 @@ class SaleController extends Controller
         $data=$request->all();
 
         if($request->file('icon')){
+            // ORIGINAL CODE:
+            /*
             $file=$request->file('icon');
             $icon_name=time().$file->getClientOriginalName();
             $file->move('admin2/sales/', $icon_name);
             $data['icon']=$icon_name;
+            */
+            
+            // MODIFIED CODE:
+            $path = $request->file('icon')->store('sales', 'public');
+            $data['icon'] = $path;
         }
         Sale::create($data);
         return redirect()->route('admin.sales.index')->with('success1', 'Muvaffaqiyatli yaratildi');
@@ -95,11 +103,18 @@ class SaleController extends Controller
         $data=$request->all();
         
          if($request->file('icon')){
-            $file=$request->file('icon');
-            $icon_name=time().$file->getClientOriginalName();
-            $file->move('admin2/sales/', $icon_name);
-            $data['icon']=$icon_name;
-        }
+             // ORIGINAL CODE:
+             /*
+             $file=$request->file('icon');
+             $icon_name=time().$file->getClientOriginalName();
+             $file->move('admin2/sales/', $icon_name);
+             $data['icon']=$icon_name;
+             */
+
+             // MODIFIED CODE:
+             $path = $request->file('icon')->store('sales', 'public');
+             $data['icon'] = $path;
+         }
 
         $sale=Sale::find($id);
         $sale->update($data);
@@ -115,6 +130,10 @@ class SaleController extends Controller
      */
     public function destroy($id)
     {
+        // NOTE: If the original code was expected to delete the icon file, 
+        // that logic was missing. To properly delete a stored file, you would 
+        // need to load the model, delete the file using Storage::delete(), 
+        // and then destroy the model record.
         Sale::destroy($id);
         return redirect()->route('admin.sales.index')->with('success3', "Muvaffaqiyatli o'chirildi");
     }

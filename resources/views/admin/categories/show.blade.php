@@ -29,7 +29,7 @@
                  </label>
                  {{ $category->name_ru }}
              </div>
-             <img src="/admin2/categories/{{ $category->icon }}" width="150">
+             <img src="/storage/{{ $category->icon }}" width="150">
          </div>
      </div>
      @endsection

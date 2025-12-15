@@ -8,12 +8,12 @@ use App\Models\Partnericon;
 
 class PartnericonController extends Controller
 {
-   function __construct()
+    function __construct()
     {
-         $this->middleware('permission:partnericon-list|partnericon-create|partnericon-edit|partnericon-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:partnericon-create', ['only' => ['create','store']]);
-         $this->middleware('permission:partnericon-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:partnericon-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:partnericon-list|partnericon-create|partnericon-edit|partnericon-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:partnericon-create', ['only' => ['create','store']]);
+        $this->middleware('permission:partnericon-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:partnericon-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -48,10 +48,17 @@ class PartnericonController extends Controller
         $data=$request->all();
 
         if($request->file('icon')){
+            // ORIGINAL CODE:
+            /*
             $file=$request->file('icon');
             $icon_name=time().$file->getClientOriginalName();
             $file->move('admin2/partnericons/', $icon_name);
             $data['icon']="http://ali98.uz/admin2/partnericons/".$icon_name;
+            */
+
+            // MODIFIED CODE:
+            $path = $request->file('icon')->store('partnericons', 'public');
+            $data['icon'] = $path;
         }
         Partnericon::create($data);
 
@@ -96,13 +103,20 @@ class PartnericonController extends Controller
     {
         $data=$request->all();
  
-         if($request->file('icon')){
+        if($request->file('icon')){
+            // ORIGINAL CODE:
+            /*
             $file=$request->file('icon');
             $icon_name=time().$file->getClientOriginalName();
             $file->move('admin2/partnericons/', $icon_name);
             $data['icon']="http://ali98.uz/admin2/partnericons/".$icon_name;
+            */
+
+            // MODIFIED CODE:
+            $path = $request->file('icon')->store('partnericons', 'public');
+            $data['icon'] = $path;
         }
-       
+        
         $partnericon=Partnericon::find($id);
         $partnericon->update($data);
 
@@ -118,9 +132,9 @@ class PartnericonController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-       
-       Partnericon::destroy($id);
-       return redirect()->route('admin.partnericons.index')->with('success3', "Muvaffaqiyatli o'chirildi");
+        
+        Partnericon::destroy($id);
+        return redirect()->route('admin.partnericons.index')->with('success3', "Muvaffaqiyatli o'chirildi");
         
         
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage; // <-- ADDED
 
 class CategoryController extends Controller
 {
@@ -50,44 +51,22 @@ class CategoryController extends Controller
         $data=$request->all();
 
         if($request->file('icon')){
+            // ORIGINAL CODE:
+            /*
             $file=$request->file('icon');
             $icon_name=time().$file->getClientOriginalName();
             $file->move('admin2/categories/', $icon_name);
             $data['icon']=$icon_name;
+            */
+            
+            // MODIFIED CODE:
+            $path = $request->file('icon')->store('categories', 'public');
+            $data['icon'] = $path;
         }
         
        
-         // $message=<<<TEXT
-        // Murojat qoldirildi!
-        // Kategoriya: {$request->name_uz}
-        // TEXT;
-
-        // $apiToken = "5203278887:AAFMvSEmPohUnQ96h7vfB7brZhYX87Y62WU";
-        // $data = [
-        //     'chat_id' => '-1001701793996',
-        //     'text' => $message,
-        // ];
-        // $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
+        // The commented-out Telegram code has been left commented out.
         
-      
-        //   $url = "https://reqbin.com/echo";
-
-        //   $curl = curl_init($url);
-        //     curl_setopt($curl, CURLOPT_URL, $url);
-        //      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-        //     $headers = array(
-        //       "Accept: */*",
-        //     );
-        //     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        //     //for debug only!
-        //     curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        //     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-            
-        //     $resp = curl_exec($curl);
-        //     curl_close($curl);
-        //     var_dump($resp);
-            
             Category::create($data);
 
         return redirect()->route('admin.categories.index')->with('success1', 'Muvaffaqiyatli yaratildi');
@@ -132,12 +111,19 @@ class CategoryController extends Controller
         $data=$request->all();
  
          if($request->file('icon')){
-            $file=$request->file('icon');
-            $icon_name=time().$file->getClientOriginalName();
-            $file->move('admin2/categories/', $icon_name);
-            $data['icon']=$icon_name;
-        }
-       
+             // ORIGINAL CODE:
+             /*
+             $file=$request->file('icon');
+             $icon_name=time().$file->getClientOriginalName();
+             $file->move('admin2/categories/', $icon_name);
+             $data['icon']=$icon_name;
+             */
+             
+             // MODIFIED CODE:
+             $path = $request->file('icon')->store('categories', 'public');
+             $data['icon'] = $path;
+         }
+        
         $category=Category::find($id);
         $category->update($data);
 
@@ -153,7 +139,7 @@ class CategoryController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-       
+        
         $category=Category::find($id);
         $category->products()->update(['htype_id'=>null]);
         $category->delete();

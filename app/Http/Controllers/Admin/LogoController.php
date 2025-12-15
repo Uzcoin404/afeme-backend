@@ -50,10 +50,17 @@ class LogoController extends Controller
         $data=$request->all();
         
         if($request->file('image')){
+            // ORIGINAL CODE:
+            /*
             $file=$request->file('image');
             $image_name=time().$file->getClientOriginalName();
             $file->move('admin2/logos/', $image_name);
             $data['image']="http://ali98.uz/admin2/logos/".$image_name;
+            */
+
+            // MODIFIED CODE:
+            $path = $request->file('image')->store('logos', 'public');
+            $data['image'] = $path;
         }
         
         Logo::create($data);
@@ -97,16 +104,23 @@ class LogoController extends Controller
        $data=$request->all();
         
         if($request->file('image')){
+            // ORIGINAL CODE:
+            /*
             $file=$request->file('image');
             $image_name=time().$file->getClientOriginalName();
             $file->move('admin2/logos/', $image_name);
             $data['image']="http://ali98.uz/admin2/logos/".$image_name;
+            */
+
+            // MODIFIED CODE:
+            $path = $request->file('image')->store('logos', 'public');
+            $data['image'] = $path;
         }
         
         $logo=Logo::find($id);
         $logo->update($data);
         
-          return redirect()->route('admin.logos.index')->with('success2' , 'Muvaffaqiyatli tahrirlandi');
+        return redirect()->route('admin.logos.index')->with('success2' , 'Muvaffaqiyatli tahrirlandi');
     }
 
     /**
@@ -118,6 +132,6 @@ class LogoController extends Controller
     public function destroy($id)
     {
         Logo::destroy($id);
-         return redirect()->route('admin.logos.index')->with('success3' , "Muvaffaqiyatli o'chirildi");
+        return redirect()->route('admin.logos.index')->with('success3' , "Muvaffaqiyatli o'chirildi");
     }
 }

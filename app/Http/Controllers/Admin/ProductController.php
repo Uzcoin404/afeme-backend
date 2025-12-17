@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+
 class ProductController extends Controller
 {
 
@@ -22,8 +23,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::whereNull('check')->get();
-        return view('admin.products.index' , compact('products'));
+        $products = Product::whereNull('check')->get();
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -55,7 +56,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-       //
+        //
     }
 
     /**
@@ -66,7 +67,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product=Product::find($id);
+        $product = Product::find($id);
         return view('admin.products.edit', compact('product'));
     }
 
@@ -79,17 +80,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $product=Product::find($id);
-        $product->update(['check'=>$request->check]);
+
+        $product = Product::find($id);
+        $product->update(['check' => $request->check]);
         $product->save();
-        if($request->check == 'true'){
-        file_get_contents('https://afeme.herokuapp.com/?post='.urlencode($id));
+        if ($request->check == 'true') {
+            // webhook to telegram bot
+            try {
+                file_get_contents('https://t.me' . urlencode($id));
+            } catch (\Throwable $th) {}
         }
         return redirect()->route('admin.products.index')->with('success2', 'Tekshirildi');
-        
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
@@ -99,7 +102,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-         Product::destroy($id);
-         return redirect()->route('admin.products.index')->with('success4', "Muvaffaqiyatli O'chirildi" );
+        Product::destroy($id);
+        return redirect()->route('admin.products.index')->with('success4', "Muvaffaqiyatli O'chirildi");
     }
 }

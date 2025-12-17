@@ -189,7 +189,10 @@ class ProductController extends Controller
              
             }
         
-        // file_get_contents('https://afeme.herokuapp.com/?post='.urlencode($data->id));
+        // webhook to telegram bot
+        try {
+            file_get_contents('https://t.me' . urlencode($data->id));
+        } catch (\Throwable $th) {}
         
         return $this->success(null, $massage);
             

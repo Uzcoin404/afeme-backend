@@ -44,7 +44,7 @@ class FilterController extends Controller
                 });
         }
 
-        if ($request->ciyt_id) {
+        if ($request->city_id) {
             $data = $data->where('city_id', $request->city_id);
         }
 
@@ -92,7 +92,8 @@ class FilterController extends Controller
             $data = $data->whereBetween('price_som', [$from, $to]);
         }
 
-        $data->where('check', 'true');
+        // accept several possible representations of a moderated/approved product
+        $data = $data->whereIn('check', ['1', 'true', 1, true]);
 
         $data = PostResource::collection($data->paginate($request->perpage));
 

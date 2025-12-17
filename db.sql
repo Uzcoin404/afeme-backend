@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 5.2.3
 -- https://www.phpmyadmin.net/
 --
--- Хост: localhost:3306
--- Время создания: Июл 19 2022 г., 14:16
--- Версия сервера: 10.3.35-MariaDB-log-cll-lve
--- Версия PHP: 7.4.30
+-- Host: db:3306
+-- Generation Time: Dec 17, 2025 at 02:28 PM
+-- Server version: 10.11.14-MariaDB-ubu2204-log
+-- PHP Version: 8.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,27 +18,27 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `aliuz_hotel`
+-- Database: `db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `addresses`
+-- Table structure for table `addresses`
 --
 
 CREATE TABLE `addresses` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tel` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tel` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `addresses`
+-- Dumping data for table `addresses`
 --
 
 INSERT INTO `addresses` (`id`, `tel`, `email`, `location`, `icon`, `created_at`, `updated_at`) VALUES
@@ -48,20 +47,20 @@ INSERT INTO `addresses` (`id`, `tel`, `email`, `location`, `icon`, `created_at`,
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `advertisements`
+-- Table structure for table `advertisements`
 --
 
 CREATE TABLE `advertisements` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `url` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(191) DEFAULT NULL,
+  `status` varchar(191) DEFAULT NULL,
+  `image` varchar(191) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `advertisements`
+-- Dumping data for table `advertisements`
 --
 
 INSERT INTO `advertisements` (`id`, `url`, `status`, `image`, `created_at`, `updated_at`) VALUES
@@ -70,21 +69,21 @@ INSERT INTO `advertisements` (`id`, `url`, `status`, `image`, `created_at`, `upd
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `areas`
+-- Table structure for table `areas`
 --
 
 CREATE TABLE `areas` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `total_area` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `living_area` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kitchen_area` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_area` varchar(255) NOT NULL,
+  `living_area` varchar(255) NOT NULL,
+  `kitchen_area` varchar(255) NOT NULL,
+  `post_id` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `areas`
+-- Dumping data for table `areas`
 --
 
 INSERT INTO `areas` (`id`, `total_area`, `living_area`, `kitchen_area`, `post_id`, `created_at`, `updated_at`) VALUES
@@ -123,48 +122,48 @@ INSERT INTO `areas` (`id`, `total_area`, `living_area`, `kitchen_area`, `post_id
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name_uz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_uz` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_ru` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `name_en` varchar(255) DEFAULT NULL,
+  `name_ru` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `name_uz`, `icon`, `created_at`, `updated_at`, `name_en`, `name_ru`) VALUES
-(12, 'Hovli', '1657791980Logo.png', '2022-06-09 06:09:00', '2022-07-17 15:28:14', 'Courtyard', 'Двор'),
-(13, 'Ofis', '1657792005Logo.png', '2022-06-09 06:10:21', '2022-07-14 09:46:45', 'Office', 'Офис'),
-(14, 'Xona', '1657792016Logo.png', '2022-06-09 06:10:49', '2022-07-17 15:27:05', 'Room', 'Комната'),
-(15, 'Kvartira', '1657792029Logo.png', '2022-06-09 06:11:33', '2022-07-14 09:47:09', 'Apartment', 'Квартира'),
-(17, 'Kottej', '1657792041Logo.png', '2022-06-09 06:12:02', '2022-07-17 15:48:58', 'Cottage', 'Коттедж');
+(12, 'Hovli', 'categories/TtJNBY5y7iTICDsVALaFJsi0ohYcA7HY5IDKrbDD.svg', '2022-06-09 06:09:00', '2025-12-14 18:30:11', 'Courtyard', 'Двор'),
+(13, 'Ofis', 'categories/XNkXZj8cloRu46ymZdevGDvi5R5rjvmql4LpM9qT.svg', '2022-06-09 06:10:21', '2025-12-14 18:36:44', 'Office', 'Офис'),
+(14, 'Xona', 'categories/DK0wD845TQqy5pUersHrCjXstMCf7O56mzlAgeaq.svg', '2022-06-09 06:10:49', '2025-12-15 07:41:30', 'Room', 'Комната'),
+(15, 'Kvartira', 'categories/wclRg0bjCi9lwkK8VUQ2FErkVKCXfiO0tbPLX5Lh.svg', '2022-06-09 06:11:33', '2025-12-14 18:37:24', 'Apartment', 'Квартира'),
+(17, 'Kottej', 'categories/8hEIR9VG8S7l5ZzZaqwbvdAnrZLbxAZZ4n6vCvyq.svg', '2022-06-09 06:12:02', '2025-12-14 18:37:36', 'Cottage', 'Коттедж');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cities`
+-- Table structure for table `cities`
 --
 
 CREATE TABLE `cities` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name_uz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `region_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_uz` varchar(255) DEFAULT NULL,
+  `region_id` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_ru` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `name_en` varchar(255) DEFAULT NULL,
+  `name_ru` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `cities`
+-- Dumping data for table `cities`
 --
 
 INSERT INTO `cities` (`id`, `name_uz`, `region_id`, `created_at`, `updated_at`, `name_en`, `name_ru`) VALUES
@@ -210,32 +209,32 @@ INSERT INTO `cities` (`id`, `name_uz`, `region_id`, `created_at`, `updated_at`, 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `clients`
+-- Table structure for table `clients`
 --
 
 CREATE TABLE `clients` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `lastname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `devays_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `devays_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `user_type` varchar(255) DEFAULT NULL,
+  `devays_id` varchar(255) DEFAULT NULL,
+  `devays_type` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `region_id` int(11) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
-  `experience` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `longitude` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `latitude` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `experience` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `longitude` varchar(255) DEFAULT NULL,
+  `latitude` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `clients`
+-- Dumping data for table `clients`
 --
 
 INSERT INTO `clients` (`id`, `name`, `lastname`, `email`, `phone`, `user_type`, `devays_id`, `devays_type`, `password`, `region_id`, `city_id`, `experience`, `description`, `longitude`, `latitude`, `created_at`, `updated_at`, `image`) VALUES
@@ -267,21 +266,22 @@ INSERT INTO `clients` (`id`, `name`, `lastname`, `email`, `phone`, `user_type`, 
 (445, 'Valijon', 'Valiev', 'aabdal@al.com', '0928349283429804', 'personal', NULL, NULL, '$2y$10$/ykgYuFtl3RMjsL.4H3wluI/9fCc6QvgZy8tmPKHxtVa6sH8gpQyK', 23, NULL, NULL, NULL, NULL, NULL, '2022-07-16 12:31:25', '2022-07-16 12:31:25', NULL),
 (446, 'Valijon', 'Shamshiev', 'sh@sh.sh', '+9989076366695858', 'personal', NULL, NULL, '$2y$10$iZCLY0kLntB/iBXLkVZ1R.HfILpKLUZPK5z4nOTaRo9B5fawOPIAK', 21, NULL, NULL, NULL, NULL, NULL, '2022-07-16 12:36:48', '2022-07-16 12:36:48', NULL),
 (447, 'Valijon', 'Kochkarov', 'aabdal@al.cov', '1234', 'personal', NULL, NULL, '$2y$10$PTvV8B9d/NzKus58W./gC.wf9Lbf0s1EU.cxFjcr/IIo9l9xoXqGG', NULL, NULL, NULL, NULL, NULL, NULL, '2022-07-16 12:47:48', '2022-07-16 12:47:48', NULL),
-(448, 'Alijon', 'qwerty', 'qwerty@qwer.qwe', '12345', 'bussines', NULL, NULL, '$2y$10$8T6KO/u8SM0Y25Ea0zhAtOjpWxW95apiYpKkvVSwc3RuhVXHd4jZC', 25, NULL, '3', 'lşdl wlşö sdlş öl lsp lqp lsdğl ğp lsğpal spl', NULL, NULL, '2022-07-16 12:59:21', '2022-07-16 12:59:21', NULL);
+(448, 'Alijon', 'qwerty', 'qwerty@qwer.qwe', '12345', 'bussines', NULL, NULL, '$2y$10$8T6KO/u8SM0Y25Ea0zhAtOjpWxW95apiYpKkvVSwc3RuhVXHd4jZC', 25, NULL, '3', 'lşdl wlşö sdlş öl lsp lqp lsdğl ğp lsğpal spl', NULL, NULL, '2022-07-16 12:59:21', '2022-07-16 12:59:21', NULL),
+(449, 'Suyunbek', 'S', 'mail@mail.com', 'mail', 'personal', NULL, NULL, '$2y$10$Pi0GBZ1sckOHorT3sY9Uv.U8eUrBf4acRWdWsVtYJW8kseDCjoo0G', 21, NULL, NULL, NULL, NULL, NULL, '2025-12-14 18:45:36', '2025-12-14 18:45:36', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `comments`
+-- Table structure for table `comments`
 --
 
 CREATE TABLE `comments` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `parent_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `author` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `reltor_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent_id` varchar(255) DEFAULT NULL,
+  `author` varchar(255) NOT NULL,
+  `post_id` varchar(255) NOT NULL,
+  `reltor_id` varchar(255) NOT NULL,
+  `comment` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -289,19 +289,19 @@ CREATE TABLE `comments` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `documents`
+-- Table structure for table `documents`
 --
 
 CREATE TABLE `documents` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `post_id` varchar(191) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `documents`
+-- Dumping data for table `documents`
 --
 
 INSERT INTO `documents` (`id`, `url`, `post_id`, `created_at`, `updated_at`) VALUES
@@ -331,35 +331,35 @@ INSERT INTO `documents` (`id`, `url`, `post_id`, `created_at`, `updated_at`) VAL
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `images`
+-- Table structure for table `images`
 --
 
 CREATE TABLE `images` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `post_id` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `images`
+-- Dumping data for table `images`
 --
 
 INSERT INTO `images` (`id`, `url`, `post_id`, `created_at`, `updated_at`) VALUES
@@ -476,12 +476,65 @@ INSERT INTO `images` (`id`, `url`, `post_id`, `created_at`, `updated_at`) VALUES
 (645, 'http://ali98.uz/files/16581286310.14971399307251.jpg', '514', '2022-07-18 07:17:52', '2022-07-18 07:17:52'),
 (646, 'http://ali98.uz/files/16581286310.21626901626587.jpg', '514', '2022-07-18 07:17:52', '2022-07-18 07:17:52'),
 (647, 'http://ali98.uz/files/16581286310.2333779335022.jpg', '514', '2022-07-18 07:17:52', '2022-07-18 07:17:52'),
-(648, 'http://ali98.uz/files/16581286320.47123885154724.jpg', '514', '2022-07-18 07:17:52', '2022-07-18 07:17:52');
+(648, 'http://ali98.uz/files/16581286320.47123885154724.jpg', '514', '2022-07-18 07:17:52', '2022-07-18 07:17:52'),
+(649, '/storage/files/Vmjryxed4L8mkkytE0jpdb6jyfDJEYMY3TedEs6k.jpg', '515', '2025-12-15 15:36:57', '2025-12-15 15:36:57'),
+(650, '/storage/files/roJF8EWa7Tz8uqTGQkMEq9VKFvaDRZ4YyBeQhYNw.jpg', '515', '2025-12-15 15:36:57', '2025-12-15 15:36:57'),
+(651, '/storage/files/DOfElrlVr7ecxroeAVKwznNVJIJFfux2wK40jbTC.jpg', '515', '2025-12-15 15:36:57', '2025-12-15 15:36:57'),
+(652, '/storage/files/J5VByv43iyrAR1zs62md2DQaGTqdPV0dFL0HqRK7.jpg', '515', '2025-12-15 15:36:57', '2025-12-15 15:36:57'),
+(653, '/storage/files/JWLscrMFHU1qGf8podMHh8fpteFFE8WGiqGmIIfe.jpg', '515', '2025-12-15 15:36:57', '2025-12-15 15:36:57'),
+(654, '/storage/files/Vmjryxed4L8mkkytE0jpdb6jyfDJEYMY3TedEs6k.jpg', '516', '2025-12-15 15:37:33', '2025-12-15 15:37:33'),
+(655, '/storage/files/roJF8EWa7Tz8uqTGQkMEq9VKFvaDRZ4YyBeQhYNw.jpg', '516', '2025-12-15 15:37:33', '2025-12-15 15:37:33'),
+(656, '/storage/files/DOfElrlVr7ecxroeAVKwznNVJIJFfux2wK40jbTC.jpg', '516', '2025-12-15 15:37:33', '2025-12-15 15:37:33'),
+(657, '/storage/files/J5VByv43iyrAR1zs62md2DQaGTqdPV0dFL0HqRK7.jpg', '516', '2025-12-15 15:37:33', '2025-12-15 15:37:33'),
+(658, '/storage/files/JWLscrMFHU1qGf8podMHh8fpteFFE8WGiqGmIIfe.jpg', '516', '2025-12-15 15:37:33', '2025-12-15 15:37:33'),
+(659, '/storage/files/roJF8EWa7Tz8uqTGQkMEq9VKFvaDRZ4YyBeQhYNw.jpg', '517', '2025-12-15 15:43:37', '2025-12-15 15:43:37'),
+(660, '/storage/files/DOfElrlVr7ecxroeAVKwznNVJIJFfux2wK40jbTC.jpg', '517', '2025-12-15 15:43:37', '2025-12-15 15:43:37'),
+(661, '/storage/files/J5VByv43iyrAR1zs62md2DQaGTqdPV0dFL0HqRK7.jpg', '517', '2025-12-15 15:43:37', '2025-12-15 15:43:37'),
+(662, '/storage/files/JWLscrMFHU1qGf8podMHh8fpteFFE8WGiqGmIIfe.jpg', '517', '2025-12-15 15:43:37', '2025-12-15 15:43:37'),
+(663, '/storage/files/roJF8EWa7Tz8uqTGQkMEq9VKFvaDRZ4YyBeQhYNw.jpg', '518', '2025-12-15 15:46:23', '2025-12-15 15:46:23'),
+(664, '/storage/files/DOfElrlVr7ecxroeAVKwznNVJIJFfux2wK40jbTC.jpg', '518', '2025-12-15 15:46:23', '2025-12-15 15:46:23'),
+(665, '/storage/files/J5VByv43iyrAR1zs62md2DQaGTqdPV0dFL0HqRK7.jpg', '518', '2025-12-15 15:46:23', '2025-12-15 15:46:23'),
+(666, '/storage/files/JWLscrMFHU1qGf8podMHh8fpteFFE8WGiqGmIIfe.jpg', '518', '2025-12-15 15:46:23', '2025-12-15 15:46:23'),
+(667, '/storage/files/DOfElrlVr7ecxroeAVKwznNVJIJFfux2wK40jbTC.jpg', '519', '2025-12-15 15:46:31', '2025-12-15 15:46:31'),
+(668, '/storage/files/J5VByv43iyrAR1zs62md2DQaGTqdPV0dFL0HqRK7.jpg', '519', '2025-12-15 15:46:31', '2025-12-15 15:46:31'),
+(669, '/storage/files/JWLscrMFHU1qGf8podMHh8fpteFFE8WGiqGmIIfe.jpg', '519', '2025-12-15 15:46:31', '2025-12-15 15:46:31'),
+(670, '/storage/files/J5VByv43iyrAR1zs62md2DQaGTqdPV0dFL0HqRK7.jpg', '520', '2025-12-15 15:46:39', '2025-12-15 15:46:39'),
+(671, '/storage/files/JWLscrMFHU1qGf8podMHh8fpteFFE8WGiqGmIIfe.jpg', '520', '2025-12-15 15:46:39', '2025-12-15 15:46:39'),
+(672, '/storage/files/JWLscrMFHU1qGf8podMHh8fpteFFE8WGiqGmIIfe.jpg', '521', '2025-12-15 15:46:56', '2025-12-15 15:46:56'),
+(673, '/storage/files/xhwvCs7RKYdPbokRu4QJN9uANaYGMZCjMfqPerXo.jpg', '521', '2025-12-15 15:46:56', '2025-12-15 15:46:56'),
+(674, '/storage/files/FJbZJUZblrLIB8ama86Jm6RpDQPC5phA4BgfdfUI.jpg', '521', '2025-12-15 15:46:56', '2025-12-15 15:46:56'),
+(675, '/storage/files/xhwvCs7RKYdPbokRu4QJN9uANaYGMZCjMfqPerXo.jpg', '522', '2025-12-15 15:47:07', '2025-12-15 15:47:07'),
+(676, '/storage/files/FJbZJUZblrLIB8ama86Jm6RpDQPC5phA4BgfdfUI.jpg', '522', '2025-12-15 15:47:07', '2025-12-15 15:47:07'),
+(677, '/storage/files/tv27uO9qmUYOWTvqg8ML7axztJuGJjPiiI0o72Nt.jpg', '522', '2025-12-15 15:47:07', '2025-12-15 15:47:07'),
+(700, '/storage/files/svCTpLewPzRPRswBaCsPdeGosyMWJJj6KRMOgMPF.jpg', '523', '2025-12-17 12:38:14', '2025-12-17 12:38:14'),
+(701, '/storage/files/Y7yC7iXXjnIsb6od4tdYl5NM1M0a1eSjeT2OZ2Ja.jpg', '523', '2025-12-17 12:38:14', '2025-12-17 12:38:14'),
+(702, '/storage/files/iVn3sUKLVuVmhzfnfQ0FImSs0h0uFp4M5URWV3AR.jpg', '523', '2025-12-17 12:38:14', '2025-12-17 12:38:14'),
+(703, '/storage/files/sxpoHp2RHJomk2ZOkGuFBRRXCIe2PBaPP10h70By.jpg', '523', '2025-12-17 12:38:14', '2025-12-17 12:38:14'),
+(704, '/storage/files/qC5LGV94Im76ecX3T5hvPIRj4hc6Xf8tC1fn9c6q.jpg', '524', '2025-12-17 12:39:58', '2025-12-17 12:39:58'),
+(705, '/storage/files/mTrrurU4BhejE8nBe6JUdh2ntMCzBEgZKZXiJcBr.jpg', '524', '2025-12-17 12:39:58', '2025-12-17 12:39:58'),
+(706, '/storage/files/spa1FC46RjyA76qr0AYDedvdLzN0sV2Q6uh0GDuK.jpg', '524', '2025-12-17 12:39:58', '2025-12-17 12:39:58'),
+(707, '/storage/files/hgF4nWHFQqyGbBDsByGPHsLHfkajuPaPI1CUwdwH.jpg', '524', '2025-12-17 12:39:58', '2025-12-17 12:39:58'),
+(708, '/storage/files/NTj6HmBpwQn1tG8rHUglVYNvxprxgHCelKwWWiCk.jpg', '525', '2025-12-17 12:45:13', '2025-12-17 12:45:13'),
+(709, '/storage/files/tWXN1he8lZ6Dz1mah2CzcYcyHyyKwqDqNQ64andQ.jpg', '525', '2025-12-17 12:45:13', '2025-12-17 12:45:13'),
+(710, '/storage/files/t9bG9Js9E7NruDRlOo2rkkqMz7YEnn1Lxk4r4tJx.jpg', '525', '2025-12-17 12:45:13', '2025-12-17 12:45:13'),
+(711, '/storage/files/1wobd7RiKNSq6kxkwncngpbgWoz7mjFFbwP1fqUB.jpg', '525', '2025-12-17 12:45:13', '2025-12-17 12:45:13'),
+(712, '/storage/files/AOItx00Rt6bAJInnDGrjTJZkeBpmvC5ECjzgffLU.jpg', '526', '2025-12-17 12:45:39', '2025-12-17 12:45:39'),
+(713, '/storage/files/DGHWYx5reGUpqzxGdNpJzKI2UQZN83UHyUdNNmO4.jpg', '526', '2025-12-17 12:45:39', '2025-12-17 12:45:39'),
+(714, '/storage/files/RiN0cVwfO8SEwRTO0JsJaIypHYLWgAaanmZhIuR6.jpg', '526', '2025-12-17 12:45:39', '2025-12-17 12:45:39'),
+(719, '/storage/files/UuNVaTwE4l4iYcJ7KNywPMCVXdBMkyxayWDZsoa8.jpg', '528', '2025-12-17 12:46:21', '2025-12-17 12:46:21'),
+(720, '/storage/files/j1HKhth6NYpT1y0AhLZC0BMkgrGjRLCks89UsZzR.jpg', '528', '2025-12-17 12:46:21', '2025-12-17 12:46:21'),
+(721, '/storage/files/61S8KmPnZeMqEwI849EE3Nhc12lGPOLOFtCATeyX.jpg', '529', '2025-12-17 12:46:52', '2025-12-17 12:46:52'),
+(722, '/storage/files/mq96BdxbIcEu9cWMfCG0n9gYuioaDDazZD7mhQ75.jpg', '529', '2025-12-17 12:46:52', '2025-12-17 12:46:52'),
+(723, '/storage/files/YIxbkL3Tr5x17X0qFaRVQx1yeaqpVeLJ5mueIUeu.jpg', '529', '2025-12-17 12:46:52', '2025-12-17 12:46:52'),
+(724, '/storage/files/wlieqD6mEO3EzMCSiFISafUmAwapwWlxW45AAOda.jpg', '529', '2025-12-17 12:46:52', '2025-12-17 12:46:52'),
+(728, '/storage/files/9dDQHmAxQyK0RHvXqqcdmN7gcomswJGzF0lUXV0n.jpg', '527', '2025-12-17 14:14:10', '2025-12-17 14:14:10'),
+(729, '/storage/files/6dv6zdjA0NlSaqWRAwKHNuJKi0osCVLD246iTabs.jpg', '527', '2025-12-17 14:14:10', '2025-12-17 14:14:10'),
+(730, '/storage/files/cbDQxHRIG8p7ymfeZUqhNebgSHq7lDBtRuZO0ymy.jpg', '527', '2025-12-17 14:14:10', '2025-12-17 14:14:10');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `likes`
+-- Table structure for table `likes`
 --
 
 CREATE TABLE `likes` (
@@ -493,7 +546,7 @@ CREATE TABLE `likes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `likes`
+-- Dumping data for table `likes`
 --
 
 INSERT INTO `likes` (`id`, `user_id`, `post_id`, `created_at`, `updated_at`) VALUES
@@ -511,19 +564,20 @@ INSERT INTO `likes` (`id`, `user_id`, `post_id`, `created_at`, `updated_at`) VAL
 (324, 444, 471, '2022-07-15 11:41:12', '2022-07-15 11:41:12'),
 (331, 419, 471, '2022-07-16 05:59:20', '2022-07-16 05:59:20'),
 (333, 419, 470, '2022-07-16 06:40:50', '2022-07-16 06:40:50'),
-(335, 420, 470, '2022-07-18 11:02:17', '2022-07-18 11:02:17');
+(335, 420, 470, '2022-07-18 11:02:17', '2022-07-18 11:02:17'),
+(336, 449, 516, '2025-12-15 16:01:11', '2025-12-15 16:01:11');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `logos`
+-- Table structure for table `logos`
 --
 
 CREATE TABLE `logos` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -531,20 +585,20 @@ CREATE TABLE `logos` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `materials`
+-- Table structure for table `materials`
 --
 
 CREATE TABLE `materials` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name_uz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name_uz` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_ru` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `name_en` varchar(255) DEFAULT NULL,
+  `name_ru` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `materials`
+-- Dumping data for table `materials`
 --
 
 INSERT INTO `materials` (`id`, `name_uz`, `created_at`, `updated_at`, `name_en`, `name_ru`) VALUES
@@ -555,21 +609,21 @@ INSERT INTO `materials` (`id`, `name_uz`, `created_at`, `updated_at`, `name_en`,
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `messages`
+-- Table structure for table `messages`
 --
 
 CREATE TABLE `messages` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `to` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `message` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parentID` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `from` varchar(255) DEFAULT NULL,
+  `to` varchar(255) DEFAULT NULL,
+  `message` varchar(255) DEFAULT NULL,
+  `parentID` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `messages`
+-- Dumping data for table `messages`
 --
 
 INSERT INTO `messages` (`id`, `from`, `to`, `message`, `parentID`, `created_at`, `updated_at`) VALUES
@@ -586,17 +640,17 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `parentID`, `created_at`,
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -637,33 +691,34 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `model_has_permissions`
+-- Table structure for table `model_has_permissions`
 --
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_type` varchar(255) NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `model_has_roles`
+-- Table structure for table `model_has_roles`
 --
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_type` varchar(255) NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `model_has_roles`
+-- Dumping data for table `model_has_roles`
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\Models\\User', 3),
+(1, 'App\\Models\\User', 38),
 (2, 'App\\Models\\User', 29),
 (3, 'App\\Models\\User', 2),
 (4, 'App\\Models\\User', 4),
@@ -672,37 +727,37 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `networks`
+-- Table structure for table `networks`
 --
 
 CREATE TABLE `networks` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `telegram` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `instagram` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telegram` varchar(255) DEFAULT NULL,
+  `instagram` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `icon` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `networks`
+-- Dumping data for table `networks`
 --
 
 INSERT INTO `networks` (`id`, `telegram`, `instagram`, `created_at`, `updated_at`, `icon`) VALUES
-(1, 'https://t.me/Ravshanbekov_21', 'https://www.instagram.com/_ravshanbekov_21/', '2022-06-22 03:23:00', '2022-06-22 03:23:00', NULL);
+(4, 'https://github.com/Ravshanbekov/AfemeUz', 'https://github.com/abdullox0900/afeme', '2025-12-15 14:24:06', '2025-12-15 14:24:41', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `oauth_access_tokens`
+-- Table structure for table `oauth_access_tokens`
 --
 
 CREATE TABLE `oauth_access_tokens` (
-  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(100) NOT NULL,
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
   `client_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `scopes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `scopes` text DEFAULT NULL,
   `revoked` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -710,7 +765,7 @@ CREATE TABLE `oauth_access_tokens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `oauth_access_tokens`
+-- Dumping data for table `oauth_access_tokens`
 --
 
 INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
@@ -1157,6 +1212,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('a5db94c119ead5f7f84e14380f3fe4a652e8a2e07634ed5ce1f111b0cf9dda7a567d00b7f94ee96b', 169, 1, 'Laravel', '[]', 0, '2022-06-11 05:35:10', '2022-06-11 05:35:10', '2022-12-11 10:35:10'),
 ('a5e7b4204edf7a00717af84663436ee558e5ce76c99081198eb4593635548e5e83208887a6966a7b', 32, 1, 'Laravel', '[]', 0, '2022-06-07 06:16:40', '2022-06-07 06:16:40', '2022-12-07 11:16:40'),
 ('a6112483ae5306f530cc8c0872a0076188ed3023a8b925a926dbeb76933afe64392871a3952297d3', 389, 1, 'Laravel', '[]', 0, '2022-07-07 02:47:48', '2022-07-07 02:47:48', '2023-01-07 07:47:48'),
+('a6b5b04f5a21220a6bd8e2be10cd52457a4ca4d95901ebe5a7564322b8a3225080813203b2283975', 449, 1, 'Laravel', '[]', 0, '2025-12-14 18:45:36', '2025-12-14 18:45:36', '2026-06-14 23:45:36'),
 ('a6c97e8b0d9b8d16f8481cc21079ae4718681c53668123a87e9bd327665f36453ccf79490c882641', 418, 1, 'Laravel', '[]', 0, '2022-07-13 08:52:26', '2022-07-13 08:52:26', '2023-01-13 13:52:26'),
 ('a70c8ac2345bbd7a9dbaf96b3ce5ed37b3332e95bbdfa8370fa69531883b4403d27cdfcf76914cf6', 169, 1, 'Laravel', '[]', 0, '2022-06-12 04:51:10', '2022-06-12 04:51:10', '2022-12-12 09:51:10'),
 ('a73392d3644378a3ac7704f5dc503c0d21e9eedff740fb8ce03085dbb21af3e402fa706f570925af', 398, 1, 'Laravel', '[]', 0, '2022-07-08 02:40:20', '2022-07-08 02:40:20', '2023-01-08 07:40:20'),
@@ -1263,9 +1319,9 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('caa6ce8bb1b3f0e33d467f21e4540d2babdce3d632aed95559ef7d901bc37527da826a8bcf6b321b', 195, 1, 'Laravel', '[]', 0, '2022-06-16 00:36:12', '2022-06-16 00:36:12', '2022-12-16 05:36:12'),
 ('cb0d4dcce662e074c841102f58607c40cd837ddac27a00aeead01509e2b1a9d657b612875298a435', 411, 1, 'Laravel', '[]', 0, '2022-07-12 07:35:06', '2022-07-12 07:35:06', '2023-01-12 12:35:06'),
 ('cb85c97f5eedc14ae471c0afc355729dbc27742f53f00d64a82c8ff37a12bfda911f192f62cfb02c', 68, 1, 'Laravel', '[]', 0, '2022-06-08 03:36:03', '2022-06-08 03:36:03', '2022-12-08 08:36:03'),
-('cbfd6e6c82b87001e5820e85ba32e301770eeba8db3dfe8a1c0346a7aa4621e1b181c14fcbe0f59c', 417, 1, 'Laravel', '[]', 0, '2022-07-15 09:59:08', '2022-07-15 09:59:08', '2023-01-15 14:59:08'),
-('cc5300f3e9388cbf1a3f8b45d9983ee38144cd0331168ff6e29c0131612027020451be48488cd021', 418, 1, 'Laravel', '[]', 0, '2022-07-14 05:32:41', '2022-07-14 05:32:41', '2023-01-14 10:32:41');
+('cbfd6e6c82b87001e5820e85ba32e301770eeba8db3dfe8a1c0346a7aa4621e1b181c14fcbe0f59c', 417, 1, 'Laravel', '[]', 0, '2022-07-15 09:59:08', '2022-07-15 09:59:08', '2023-01-15 14:59:08');
 INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
+('cc5300f3e9388cbf1a3f8b45d9983ee38144cd0331168ff6e29c0131612027020451be48488cd021', 418, 1, 'Laravel', '[]', 0, '2022-07-14 05:32:41', '2022-07-14 05:32:41', '2023-01-14 10:32:41'),
 ('cca8c3d0ece581fec29b328f7dfb53bf93517438cc070cb1ffd37849ce4c188e18e6133b157aa452', 125, 1, 'Laravel', '[]', 0, '2022-06-11 01:16:50', '2022-06-11 01:16:50', '2022-12-11 06:16:50'),
 ('cdc90ac5dcf0255bc5d918bc6c74667a35a95886979c351f00d4d74f195b9fcacb0e3495009963f8', 64, 1, 'Laravel', '[]', 0, '2022-06-08 00:58:09', '2022-06-08 00:58:09', '2022-12-08 05:58:09'),
 ('ce03d890a9e0cbbd33be87d51b4aa75603c0cfc60c71f4205f7448fc4bfda816e116e3c556d54eff', 195, 1, 'Laravel', '[]', 0, '2022-06-28 00:48:49', '2022-06-28 00:48:49', '2022-12-28 05:48:49'),
@@ -1401,14 +1457,14 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `oauth_auth_codes`
+-- Table structure for table `oauth_auth_codes`
 --
 
 CREATE TABLE `oauth_auth_codes` (
-  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(100) NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `client_id` bigint(20) UNSIGNED NOT NULL,
-  `scopes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `scopes` text DEFAULT NULL,
   `revoked` tinyint(1) NOT NULL,
   `expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1416,16 +1472,16 @@ CREATE TABLE `oauth_auth_codes` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `oauth_clients`
+-- Table structure for table `oauth_clients`
 --
 
 CREATE TABLE `oauth_clients` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `secret` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `redirect` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `secret` varchar(100) DEFAULT NULL,
+  `provider` varchar(255) DEFAULT NULL,
+  `redirect` text NOT NULL,
   `personal_access_client` tinyint(1) NOT NULL,
   `password_client` tinyint(1) NOT NULL,
   `revoked` tinyint(1) NOT NULL,
@@ -1434,7 +1490,7 @@ CREATE TABLE `oauth_clients` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `oauth_clients`
+-- Dumping data for table `oauth_clients`
 --
 
 INSERT INTO `oauth_clients` (`id`, `user_id`, `name`, `secret`, `provider`, `redirect`, `personal_access_client`, `password_client`, `revoked`, `created_at`, `updated_at`) VALUES
@@ -1444,7 +1500,7 @@ INSERT INTO `oauth_clients` (`id`, `user_id`, `name`, `secret`, `provider`, `red
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `oauth_personal_access_clients`
+-- Table structure for table `oauth_personal_access_clients`
 --
 
 CREATE TABLE `oauth_personal_access_clients` (
@@ -1455,7 +1511,7 @@ CREATE TABLE `oauth_personal_access_clients` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `oauth_personal_access_clients`
+-- Dumping data for table `oauth_personal_access_clients`
 --
 
 INSERT INTO `oauth_personal_access_clients` (`id`, `client_id`, `created_at`, `updated_at`) VALUES
@@ -1464,12 +1520,12 @@ INSERT INTO `oauth_personal_access_clients` (`id`, `client_id`, `created_at`, `u
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `oauth_refresh_tokens`
+-- Table structure for table `oauth_refresh_tokens`
 --
 
 CREATE TABLE `oauth_refresh_tokens` (
-  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `access_token_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(100) NOT NULL,
+  `access_token_id` varchar(100) NOT NULL,
   `revoked` tinyint(1) NOT NULL,
   `expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1477,50 +1533,50 @@ CREATE TABLE `oauth_refresh_tokens` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `partnericons`
+-- Table structure for table `partnericons`
 --
 
 CREATE TABLE `partnericons` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `partnericons`
+-- Dumping data for table `partnericons`
 --
 
 INSERT INTO `partnericons` (`id`, `icon`, `url`, `created_at`, `updated_at`) VALUES
-(1, 'http://ali98.uz/admin2/partnericons/1656484902nest-one 1.png', 'https://nestone.uz/apartments/ru.html?utm_source=google-cpc&utm_medium=search', '2022-06-28 07:36:50', '2022-07-06 04:42:15'),
-(2, 'http://ali98.uz/admin2/partnericons/1656485435urban stroy 1.png', 'https://urbanstroy.uz/', '2022-06-28 07:37:03', '2022-06-29 01:52:30'),
-(3, 'http://ali98.uz/admin2/partnericons/1656485957tashekent-city 1.png', 'https://www.mbc.uz/', '2022-06-28 07:37:12', '2022-06-29 01:59:17'),
-(4, 'http://ali98.uz/admin2/partnericons/1656486593dream-house 1.png', 'https://www.youtube.com/watch?v=jFBJnbTW_z8&list=RDGMEMHDXYb1_DDSgDsobPsOFxpAVMjFBJnbTW_z8&start_radio=1', '2022-06-28 07:37:20', '2022-06-29 02:09:53'),
-(5, 'http://ali98.uz/admin2/partnericons/1656486612xon-saroy 1.png', NULL, '2022-06-29 02:10:12', '2022-06-29 02:10:12'),
-(6, 'http://ali98.uz/admin2/partnericons/1656486675akay-city 1.png', NULL, '2022-06-29 02:10:45', '2022-06-29 02:11:15');
+(9, 'partnericons/t4M4m7zbAQMmvQQ2E8FW48UDcYfPfzbM77mjnHux.jpg', 'https://gh.uz/', '2025-12-15 12:56:57', '2025-12-15 12:56:57'),
+(10, 'partnericons/Q3m7Uj2YGdrajKwZnHaK30vBeNrytBElRD8p9xsQ.jpg', 'https://mbc.uz/', '2025-12-15 12:59:09', '2025-12-15 12:59:09'),
+(11, 'partnericons/qhTumBQJ49D0I0a8yhLcZ4y9GYMBnHBq7t7fNAxz.webp', 'https://xonsaroy.uz/', '2025-12-15 13:00:48', '2025-12-15 13:00:48'),
+(12, 'partnericons/mGh9XLK6PZxpyZNjN3J6wPEwv5dFLUEAkY9skOQE.svg', 'https://uetconstruction.com/', '2025-12-15 13:01:24', '2025-12-15 13:01:24'),
+(13, 'partnericons/EKfY7sdr0VHl0c4JozuvK9k8cXOT5fTMKdBYFMLU.png', 'https://mesmer.uz/', '2025-12-15 13:01:56', '2025-12-15 13:01:56'),
+(14, 'partnericons/Rrq62mrW5OkhBMDYbY4iSQuuqNjrnFCW7cAzjAbd.png', 'https://kam-cc.com/', '2025-12-15 13:02:15', '2025-12-15 13:02:15');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `partners`
+-- Table structure for table `partners`
 --
 
 CREATE TABLE `partners` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title_uz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `title_ru` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `title_en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `body_uz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `body_ru` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `body_en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title_uz` varchar(255) DEFAULT NULL,
+  `title_ru` varchar(255) DEFAULT NULL,
+  `title_en` varchar(255) DEFAULT NULL,
+  `body_uz` varchar(255) DEFAULT NULL,
+  `body_ru` varchar(255) DEFAULT NULL,
+  `body_en` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `partners`
+-- Dumping data for table `partners`
 --
 
 INSERT INTO `partners` (`id`, `title_uz`, `title_ru`, `title_en`, `body_uz`, `body_ru`, `body_en`, `created_at`, `updated_at`, `status`) VALUES
@@ -1529,17 +1585,17 @@ INSERT INTO `partners` (`id`, `title_uz`, `title_ru`, `title_en`, `body_uz`, `bo
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `password_resets`
+-- Dumping data for table `password_resets`
 --
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
@@ -1548,19 +1604,19 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `permissions`
+-- Table structure for table `permissions`
 --
 
 CREATE TABLE `permissions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `permissions`
+-- Dumping data for table `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
@@ -1634,16 +1690,16 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `personal_access_tokens`
+-- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1652,13 +1708,13 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `potpiskas`
+-- Table structure for table `potpiskas`
 --
 
 CREATE TABLE `potpiskas` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `reltor_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reltor_id` varchar(255) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1666,120 +1722,129 @@ CREATE TABLE `potpiskas` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `check` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `check` varchar(255) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `htype_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sale_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `longitude` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `latitude` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `htype_id` varchar(255) DEFAULT NULL,
+  `sale_id` varchar(255) DEFAULT NULL,
+  `longitude` varchar(255) DEFAULT NULL,
+  `latitude` varchar(255) DEFAULT NULL,
   `price_som` int(11) DEFAULT NULL,
   `nwe_price` int(11) DEFAULT NULL,
-  `date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `room` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `kitchen_area` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `living_area` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `total_area` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `total_area_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `repair_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` varchar(255) DEFAULT NULL,
+  `room` varchar(255) DEFAULT NULL,
+  `kitchen_area` varchar(255) DEFAULT NULL,
+  `living_area` varchar(255) DEFAULT NULL,
+  `total_area` varchar(255) DEFAULT NULL,
+  `total_area_type` varchar(255) DEFAULT NULL,
+  `repair_id` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `close` tinyint(1) DEFAULT NULL,
-  `material_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `region_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `house` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `floor` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `flat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ipoteka` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `trade` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `material_id` varchar(255) DEFAULT NULL,
+  `region_id` varchar(255) DEFAULT NULL,
+  `city_id` varchar(255) DEFAULT NULL,
+  `street` varchar(255) DEFAULT NULL,
+  `house` varchar(255) DEFAULT NULL,
+  `floor` varchar(255) DEFAULT NULL,
+  `flat` varchar(255) DEFAULT NULL,
+  `ipoteka` varchar(255) DEFAULT NULL,
+  `trade` varchar(255) DEFAULT NULL,
   `view` int(11) DEFAULT NULL,
+  `solt` varchar(60) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `products`
+-- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `check`, `user_id`, `htype_id`, `sale_id`, `longitude`, `latitude`, `price_som`, `nwe_price`, `date`, `room`, `kitchen_area`, `living_area`, `total_area`, `total_area_type`, `repair_id`, `description`, `close`, `material_id`, `region_id`, `city_id`, `street`, `house`, `floor`, `flat`, `ipoteka`, `trade`, `view`, `created_at`, `updated_at`) VALUES
-(469, '1', 418, '17', '6', '72.43532082057014', '40.725433601749565', 1000000000, NULL, '2020', '10', '35', '25', '10', 'ar', '1', ' Turar joylar asrlar davomida togʻ gʻorlari, tabiatdagi oddiy boshpana bostirmalardan boshlab, zamonaviy koʻp qavatli uylargacha murakkab tarak,qiyot jarayonini bosib oʻtgan. Ayni vaqtda meʼmorlik shaklu shamoyili asosini taʼminlab kelgan. Tosh davrida gor, chayla, yertoʻlalar Turar joy vazifasini oʻtagan (qarang Ibtidoiy jamiyat). Inson oʻtroqlashgan sari Turar joy shakli ham oʻzgara borgan, oʻrmonli joylarda yogʻoch uylar yuzaga kelgan (botqoq va suv bosadigan yerlarga yogoch, xoda qoqib, ustiga uy qurilgan). Iqlimi quruq, daraxt oʻsmaydigan dasht va togʻ etaklarida neolit davridan boshlab tosh, loy, xom gʻisht, guvala, somon kabi qurilish materiallaridan foydalanilgan. Osiyo va Afrikaning chorvachilik bilan shugʻullanadigan oʻlkalarida koʻchma Tj.lar keng tarqalgan. Chodir (hayvon terisi, matodan; Osiyoning jan. toglik hududlarida, eroniylar, arablar), oq uy, qora uyoʻtov, chayla, kapa, olachuq kabi (namat va yogʻochdan) mugʻul koʻchma uyjoylari ayniqsa koʻchmanchi turkiy qavmlarda keng qoʻllangan, hatto arava ustiga qurilgan koʻchik (koʻshk)lar Dashti Qipchoqsan Sharqiy Yevropagacha boʻlgan hududlarda kuzatilgan. Shimolida eskimoslarning Turar joylari bugʻu terisi va muzdan qurilgan.\r\n', NULL, '16', '21', '75', 'Zavroq', '2', '2', NULL, NULL, NULL, 45, '2022-07-13 09:01:17', '2022-07-19 08:35:03'),
-(470, '1', 418, '13', '6', '64.43202463427306', '39.77500644701446', 900000000, NULL, '2000', '3', '15', '45', '100', 'm2', '1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s w', NULL, '17', '22', '77', 'Markaz', '2', '4', '20', NULL, NULL, 11, '2022-07-13 09:04:12', '2022-07-19 08:34:44'),
-(471, '1', 418, '12', '5', '65.36817008842684', '40.142439402636214', 7000000, NULL, '2000', '7', '25', '35', '8', 'ar', '1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s w', NULL, '16', '27', '82', 'Karmana', '2', NULL, NULL, NULL, NULL, 33, '2022-07-13 09:08:51', '2022-07-19 08:35:45'),
-(474, 'true', 420, '15', '5', '69.20071101662788', '41.08971670641833', 10000000, NULL, '1009', '10', '12', '1', '21', NULL, '1', 'Yahshi kvartira', NULL, '16', '33', '88', 'Bobur shoh 5 Makro togrisida', '2', '1', '2', NULL, NULL, 280, '2022-07-14 05:37:43', '2022-07-19 08:44:45'),
-(490, 'false', 417, '15', '6', '59.017069085785394', '43.87860077838318', 100000000, NULL, '2000', '5', '20', '20', '6', 'ar', '1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s w', NULL, '16', '29', '84', 'Muynok', '2', '2', NULL, NULL, NULL, 11, '2022-07-14 06:44:36', '2022-07-19 08:45:18'),
-(494, 'true', 420, '12', '5', '64.45901852843316', '39.859691314090526', 12342366, NULL, '2022', '8', '21', '3232', '323', NULL, '1', 'Lorem', NULL, '16', '22', '77', 'bobur', '2', '0', '1', NULL, NULL, 211, '2022-07-14 09:56:47', '2022-07-19 08:46:16'),
-(495, 'true', 420, '15', '6', '71.64163338069956', '41.01131360371609', 99887778, NULL, '2022', '3', '32', '233', '323', NULL, '1', 'Yahshi uy', NULL, '16', '26', '81', 'SH', '2', '1', '0', NULL, NULL, 15, '2022-07-14 10:13:47', '2022-07-19 08:58:24'),
-(496, 'false', 420, '15', '6', '71.64163338069956', '41.01131360371609', 99887778, NULL, '2022', '3', '32', '233', '323', NULL, '1', 'Yahshi uy', NULL, '16', '26', '81', 'SH', '2', '1', '0', NULL, NULL, 1, '2022-07-14 10:13:49', '2022-07-19 08:58:42'),
-(497, 'true', 420, '17', '5', '65.87056577316783', '39.80217789641443', 19800000, NULL, '2019', '6', '34', '42', '423', NULL, '1', 'zor uy', NULL, '17', '25', '80', 'Bobur', '2', '1', '3', NULL, NULL, 143, '2022-07-14 10:17:18', '2022-07-19 08:59:17'),
-(498, 'true', 420, '14', '5', '59.37113393675047', '42.721161740409464', 150000000, NULL, '1999', '12', '213', '321', '2333', NULL, '1', 'yahshi', NULL, '16', '29', '84', 'kocha 4', '2', '1', '1', NULL, NULL, 2, '2022-07-14 10:21:40', '2022-07-19 09:01:49'),
-(503, 'true', 419, '12', '5', '70.95273180738415', '40.74855390789263', 7900000, NULL, '2020', '3', '2', '2', '2', 'm2', '1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five', NULL, '17', '33', '89', 'Anidjon', '2', '1', '2', NULL, NULL, 39, '2022-07-14 10:26:46', '2022-07-19 09:15:52'),
-(504, NULL, 420, '13', '5', '71.67662117390194', '40.96141260480363', 999999999, NULL, '2019', '18', '32', '3232', '32', NULL, '1', 'yaxshi uyjon telfonda gaplashamiz', NULL, '16', '26', '81', 'alisher 15', '2', '12', '21', NULL, NULL, 3, '2022-07-14 10:27:45', '2022-07-19 08:19:35'),
-(505, NULL, 419, '12', '5', '70.95273180738415', '40.74855390789263', 7900000, NULL, '2020', '3', '2', '2', '2', 'm2', '1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five', NULL, '17', '33', '89', 'Anidjon', '2', '1', '2', NULL, NULL, 1, '2022-07-14 10:28:08', '2022-07-19 08:20:13'),
-(506, NULL, 420, '13', '5', '70.93504402546444', '40.536943975819874', 13000000, NULL, '2019', '18', '32', '3232', '32', NULL, '1', 'yaxshi uyjon telfonda gaplashamiz', NULL, '16', '23', '78', 'alisher 15', '2', '12', '21', NULL, NULL, 46, '2022-07-14 10:28:23', '2022-07-19 08:20:49'),
-(507, NULL, 420, '12', '6', '69.2917421213181', '41.248932087862926', 13400000, NULL, '2019', '18', '32', '3232', '32', NULL, '1', 'yaxshi uyjon telfonda gaplashamiz', NULL, '16', '33', '88', 'alisher 15', '2', '12', '21', NULL, NULL, 1, '2022-07-14 10:29:15', '2022-07-19 08:22:03'),
-(508, NULL, 420, '12', '5', '72.34770405223765', '40.78048381960076', 19000000, NULL, '1999', '12', '12', '213', '334', NULL, '1', 'Yaxshi uy', NULL, '16', '21', '75', 'Bobur 15', '2', '1', '2', NULL, NULL, 38, '2022-07-14 10:45:24', '2022-07-19 08:22:20'),
-(510, NULL, 443, '13', '5', '23.90625', '8.157118149071993', 10000000, NULL, '2457', '425', '4', '45', '4', 'ar', '1', '254p[p', NULL, '16', '21', '89', 'rthrth', '2', '2', '5', NULL, NULL, 2, '2022-07-15 10:06:33', '2022-07-19 07:32:39'),
-(512, NULL, 448, '13', '5', '77.6953125', '51.020666012558095', 12, NULL, '23', '32', '32', '32', '29', NULL, '2', 'alkd', NULL, '16', '23', '78', 'alkflş', '2', '32', '32', NULL, NULL, 21, '2022-07-18 07:17:32', '2022-07-19 08:22:43'),
-(513, NULL, 448, '13', '5', '77.6953125', '51.020666012558095', 12, NULL, '23', '32', '32', '32', '29', NULL, '2', 'alkd', NULL, '16', '23', '78', 'alkflş', '2', '32', '32', NULL, NULL, 1, '2022-07-18 07:17:38', '2022-07-19 08:22:56'),
-(514, NULL, 448, '13', '5', '77.6953125', '51.020666012558095', 12, NULL, '23', '32', '32', '32', '29', NULL, '2', 'alkd', NULL, '16', '23', '78', 'alkflş', '2', '32', '32', NULL, NULL, 1, '2022-07-18 07:17:52', '2022-07-19 08:23:22');
+INSERT INTO `products` (`id`, `check`, `user_id`, `htype_id`, `sale_id`, `longitude`, `latitude`, `price_som`, `nwe_price`, `date`, `room`, `kitchen_area`, `living_area`, `total_area`, `total_area_type`, `repair_id`, `description`, `close`, `material_id`, `region_id`, `city_id`, `street`, `house`, `floor`, `flat`, `ipoteka`, `trade`, `view`, `solt`, `created_at`, `updated_at`) VALUES
+(469, '1', 418, '17', '6', '72.43532082057014', '40.725433601749565', 1000000000, NULL, '2020', '10', '35', '25', '10', 'ar', '1', ' Turar joylar asrlar davomida togʻ gʻorlari, tabiatdagi oddiy boshpana bostirmalardan boshlab, zamonaviy koʻp qavatli uylargacha murakkab tarak,qiyot jarayonini bosib oʻtgan. Ayni vaqtda meʼmorlik shaklu shamoyili asosini taʼminlab kelgan. Tosh davrida gor, chayla, yertoʻlalar Turar joy vazifasini oʻtagan (qarang Ibtidoiy jamiyat). Inson oʻtroqlashgan sari Turar joy shakli ham oʻzgara borgan, oʻrmonli joylarda yogʻoch uylar yuzaga kelgan (botqoq va suv bosadigan yerlarga yogoch, xoda qoqib, ustiga uy qurilgan). Iqlimi quruq, daraxt oʻsmaydigan dasht va togʻ etaklarida neolit davridan boshlab tosh, loy, xom gʻisht, guvala, somon kabi qurilish materiallaridan foydalanilgan. Osiyo va Afrikaning chorvachilik bilan shugʻullanadigan oʻlkalarida koʻchma Tj.lar keng tarqalgan. Chodir (hayvon terisi, matodan; Osiyoning jan. toglik hududlarida, eroniylar, arablar), oq uy, qora uyoʻtov, chayla, kapa, olachuq kabi (namat va yogʻochdan) mugʻul koʻchma uyjoylari ayniqsa koʻchmanchi turkiy qavmlarda keng qoʻllangan, hatto arava ustiga qurilgan koʻchik (koʻshk)lar Dashti Qipchoqsan Sharqiy Yevropagacha boʻlgan hududlarda kuzatilgan. Shimolida eskimoslarning Turar joylari bugʻu terisi va muzdan qurilgan.\r\n', NULL, '16', '21', '75', 'Zavroq', '2', '2', NULL, NULL, NULL, 45, NULL, '2022-07-13 09:01:17', '2022-07-19 08:35:03'),
+(470, '1', 418, '13', '6', '64.43202463427306', '39.77500644701446', 900000000, NULL, '2000', '3', '15', '45', '100', 'm2', '1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s w', NULL, '17', '22', '77', 'Markaz', '2', '4', '20', NULL, NULL, 11, NULL, '2022-07-13 09:04:12', '2022-07-19 08:34:44'),
+(471, '1', 418, '12', '5', '65.36817008842684', '40.142439402636214', 7000000, NULL, '2000', '7', '25', '35', '8', 'ar', '1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s w', NULL, '16', '27', '82', 'Karmana', '2', NULL, NULL, NULL, NULL, 33, NULL, '2022-07-13 09:08:51', '2022-07-19 08:35:45'),
+(474, 'true', 420, '15', '5', '69.20071101662788', '41.08971670641833', 10000000, NULL, '1009', '10', '12', '1', '21', NULL, '1', 'Yahshi kvartira', NULL, '16', '33', '88', 'Bobur shoh 5 Makro togrisida', '2', '1', '2', NULL, NULL, 6, NULL, '2022-07-14 05:37:43', '2025-12-15 17:31:09'),
+(490, 'false', 417, '15', '6', '59.017069085785394', '43.87860077838318', 100000000, NULL, '2000', '5', '20', '20', '6', 'ar', '1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s w', NULL, '16', '29', '84', 'Muynok', '2', '2', NULL, NULL, NULL, 11, NULL, '2022-07-14 06:44:36', '2022-07-19 08:45:18'),
+(494, 'true', 420, '12', '5', '64.45901852843316', '39.859691314090526', 12342366, NULL, '2022', '8', '21', '3232', '323', NULL, '1', 'Lorem', NULL, '16', '22', '77', 'bobur', '2', '0', '1', NULL, NULL, 7, NULL, '2022-07-14 09:56:47', '2022-07-19 08:46:16'),
+(495, 'true', 420, '15', '6', '71.64163338069956', '41.01131360371609', 99887778, NULL, '2022', '3', '32', '233', '323', NULL, '1', 'Yahshi uy', NULL, '16', '26', '81', 'SH', '2', '1', '0', NULL, NULL, 5, NULL, '2022-07-14 10:13:47', '2025-12-15 16:59:31'),
+(496, 'false', 420, '15', '6', '71.64163338069956', '41.01131360371609', 99887778, NULL, '2022', '3', '32', '233', '323', NULL, '1', 'Yahshi uy', NULL, '16', '26', '81', 'SH', '2', '1', '0', NULL, NULL, 14, NULL, '2022-07-14 10:13:49', '2022-07-19 08:58:42'),
+(497, 'true', 420, '17', '5', '65.87056577316783', '39.80217789641443', 19800000, NULL, '2019', '6', '34', '42', '423', NULL, '1', 'zor uy', NULL, '17', '25', '80', 'Bobur', '2', '1', '3', NULL, NULL, 12, NULL, '2022-07-14 10:17:18', '2025-12-17 14:19:12'),
+(498, 'true', 420, '14', '5', '59.37113393675047', '42.721161740409464', 150000000, NULL, '1999', '12', '213', '321', '2333', NULL, '1', 'yahshi', NULL, '16', '29', '84', 'kocha 4', '2', '1', '1', NULL, NULL, 3, NULL, '2022-07-14 10:21:40', '2025-12-17 14:15:36'),
+(503, 'true', 419, '12', '5', '70.95273180738415', '40.74855390789263', 7900000, NULL, '2020', '3', '2', '2', '2', 'm2', '1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five', NULL, '17', '33', '89', 'Andijon', '2', '1', '2', NULL, NULL, 11, NULL, '2022-07-14 10:26:46', '2025-12-17 14:19:03'),
+(504, 'false', 420, '13', '5', '71.67662117390194', '40.96141260480363', 999999999, NULL, '2019', '18', '32', '3232', '32', NULL, '1', 'yaxshi uyjon telfonda gaplashamiz', NULL, '16', '26', '81', 'alisher 15', '2', '12', '21', NULL, NULL, 3, NULL, '2022-07-14 10:27:45', '2025-12-15 15:39:20'),
+(505, 'false', 419, '12', '5', '70.95273180738415', '40.74855390789263', 7900000, NULL, '2020', '3', '2', '2', '2', 'm2', '1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five', NULL, '17', '33', '89', 'Anidjon', '2', '1', '2', NULL, NULL, 14, NULL, '2022-07-14 10:28:08', '2025-12-15 15:39:23'),
+(506, 'false', 420, '13', '5', '70.93504402546444', '40.536943975819874', 13000000, NULL, '2019', '18', '32', '3232', '32', NULL, '1', 'yaxshi uyjon telfonda gaplashamiz', NULL, '16', '23', '78', 'alisher 15', '2', '12', '21', NULL, NULL, 12, NULL, '2022-07-14 10:28:23', '2025-12-15 15:39:25'),
+(507, 'false', 420, '12', '6', '69.2917421213181', '41.248932087862926', 13400000, NULL, '2019', '18', '32', '3232', '32', NULL, '1', 'yaxshi uyjon telfonda gaplashamiz', NULL, '16', '33', '88', 'alisher 15', '2', '12', '21', NULL, NULL, 60, NULL, '2022-07-14 10:29:15', '2025-12-15 15:39:27'),
+(508, 'false', 420, '12', '5', '72.34770405223765', '40.78048381960076', 19000000, NULL, '1999', '12', '12', '213', '334', NULL, '1', 'Yaxshi uy', NULL, '16', '21', '75', 'Bobur 15', '2', '1', '2', NULL, NULL, 38, NULL, '2022-07-14 10:45:24', '2025-12-15 15:39:30'),
+(510, 'false', 443, '13', '5', '23.90625', '8.157118149071993', 10000000, NULL, '2457', '425', '4', '45', '4', 'ar', '1', '254p[p', NULL, '16', '21', '89', 'rthrth', '2', '2', '5', NULL, NULL, 2, NULL, '2022-07-15 10:06:33', '2025-12-15 15:39:32'),
+(512, 'false', 448, '13', '5', '77.6953125', '51.020666012558095', 12, NULL, '23', '32', '32', '32', '29', NULL, '2', 'alkd', NULL, '16', '23', '78', 'alkflş', '2', '32', '32', NULL, NULL, 21, NULL, '2022-07-18 07:17:32', '2025-12-15 15:39:35'),
+(513, 'false', 448, '13', '5', '77.6953125', '51.020666012558095', 12, NULL, '23', '32', '32', '32', '29', NULL, '2', 'alkd', NULL, '16', '23', '78', 'alkflş', '2', '32', '32', NULL, NULL, 29, NULL, '2022-07-18 07:17:38', '2025-12-15 15:39:37'),
+(514, 'false', 448, '13', '5', '77.6953125', '51.020666012558095', 12, NULL, '23', '32', '32', '32', '29', NULL, '2', 'alkd', NULL, '16', '23', '78', 'alkflş', '2', '32', '32', NULL, NULL, 30, NULL, '2022-07-18 07:17:52', '2025-12-15 15:39:40'),
+(515, 'true', 449, '12', '5', '69.19868502751285', '41.28036940035558', 1000000000, NULL, '2010', '5', '24', '32', '90', NULL, '1', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit debitis consequuntur perferendis ipsum voluptas dolor aliquam iste, vero dolorem quis, eveniet quod. Esse perferendis beatae dolorum? Voluptatum, sapiente officiis nihil voluptas mollitia maxime, aut cupiditate corrupti ratione molestias amet iste assumenda porro eveniet quibusdam minima, numquam ipsam. Odit quos laudantium maiores bl', NULL, '16', '21', '75', '1', '1', '1', '1', NULL, NULL, 52, NULL, '2025-12-15 15:36:57', '2025-12-17 13:49:40'),
+(523, 'true', 449, '15', '5', '69.40071101662788', '41.02971670641833', 4000000, NULL, '2005', '2', '16', '20', '50', 'null', '2', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptate incidunt nulla. Ab suscipit et saepe consequatur tempore soluta ratione nobis adipisci, cumque nam minima ut placeat. Distinctio id facere fugit in, provident doloremque delectus ipsa sapiente et, ab dolore nihil amet. Illum quisquam, dolorem officiis harum temporibus neque beatae pariatur rerum id? Expedita deleniti om', NULL, '17', '33', '88', 'Yunusobod', '2', '4', '4', NULL, NULL, 7, NULL, '2025-12-15 17:17:16', '2025-12-17 13:49:55'),
+(524, 'true', 449, '15', '5', '71.54163338069956', '41.11131360371609', 4000000, NULL, '2005', '2', '16', '20', '50', 'null', '2', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptate incidunt nulla. Ab suscipit et saepe consequatur tempore soluta ratione nobis adipisci, cumque nam minima ut placeat. Distinctio id facere fugit in, provident doloremque delectus ipsa sapiente et, ab dolore nihil amet. Illum quisquam, dolorem officiis harum temporibus neque beatae pariatur rerum id? Expedita deleniti om', NULL, '17', '33', '88', 'Yunusobod', '2', '4', '4', NULL, NULL, 6, NULL, '2025-12-15 17:18:08', '2025-12-17 14:03:58'),
+(525, 'true', 449, '13', '5', '71.58163338069956', '41.18131360371609', 5000000, NULL, '2005', '2', '16', '20', '50', 'null', '2', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptate incidunt nulla. Ab suscipit et saepe consequatur tempore soluta ratione nobis adipisci, cumque nam minima ut placeat. Distinctio id facere fugit in, provident doloremque delectus ipsa sapiente et, ab dolore nihil amet. Illum quisquam, dolorem officiis harum temporibus neque beatae pariatur rerum id? Expedita deleniti om', NULL, '17', '33', '88', 'Yunusobod', '2', '4', '4', NULL, NULL, 91, NULL, '2025-12-15 17:19:01', '2025-12-17 14:18:44'),
+(526, 'true', 449, '13', '5', '77.6853125', '77.6853125', 5000000, NULL, '2005', '2', '16', '20', '50', 'null', '2', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptate incidunt nulla. Ab suscipit et saepe consequatur tempore soluta ratione nobis adipisci, cumque nam minima ut placeat. Distinctio id facere fugit in, provident doloremque delectus ipsa sapiente et, ab dolore nihil amet. Illum quisquam, dolorem officiis harum temporibus neque beatae pariatur rerum id? Expedita deleniti om', NULL, '17', '23', '78', 'Qo\'qon', '3', '4', '4', NULL, NULL, 59, NULL, '2025-12-15 17:19:52', '2025-12-17 12:50:16'),
+(527, 'true', 449, '14', '5', '71.64163338069956', '41.01131360371609', 2500000, NULL, '2015', '2', '16', '20', '50', 'm2', '3', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptate incidunt nulla. Ab suscipit et saepe consequatur tempore soluta ratione nobis adipisci, cumque nam minima ut placeat. Distinctio id facere fugit in, provident doloremque delectus ipsa sapiente et, ab dolore nihil amet. Illum quisquam, dolorem officiis harum temporibus neque beatae pariatur rerum id? Expedita deleniti om', NULL, '18', '33', '88', 'Tinchlik', '45', '4', '4', NULL, NULL, 7, NULL, '2025-12-15 17:22:02', '2025-12-17 14:14:38'),
+(528, 'true', 449, '14', '6', '65.46817008842684', '40.182439402636214', 500000000, NULL, '2015', '2', '16', '20', '50', 'null', '3', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptate incidunt nulla. Ab suscipit et saepe consequatur tempore soluta ratione nobis adipisci, cumque nam minima ut placeat. Distinctio id facere fugit in, provident doloremque delectus ipsa sapiente et, ab dolore nihil amet. Illum quisquam, dolorem officiis harum temporibus neque beatae pariatur rerum id? Expedita deleniti om', NULL, '18', '33', '88', 'Resevi', '12', '4', '4', NULL, NULL, 34, NULL, '2025-12-15 17:23:00', '2025-12-17 12:50:20'),
+(529, 'true', 449, '15', '6', '70.55273180738415', '40.34855390789263', 600000000, NULL, '2015', '2', '16', '20', '50', 'null', '3', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptate incidunt nulla. Ab suscipit et saepe consequatur tempore soluta ratione nobis adipisci, cumque nam minima ut placeat. Distinctio id facere fugit in, provident doloremque delectus ipsa sapiente et, ab dolore nihil amet. Illum quisquam, dolorem officiis harum temporibus neque beatae pariatur rerum id? Expedita deleniti om', NULL, '18', '33', '88', 'Resevi', '12', '4', '4', NULL, NULL, 49, NULL, '2025-12-15 17:23:23', '2025-12-17 14:26:35');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `regions`
+-- Table structure for table `regions`
 --
 
 CREATE TABLE `regions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name_uz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name_uz` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_ru` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `name_en` varchar(255) DEFAULT NULL,
+  `name_ru` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `regions`
+-- Dumping data for table `regions`
 --
 
 INSERT INTO `regions` (`id`, `name_uz`, `created_at`, `updated_at`, `name_en`, `name_ru`, `image`) VALUES
-(21, 'Andijon', '2022-06-09 01:52:05', '2022-07-14 09:45:57', 'Andijon', 'Андижан', 'http://ali98.uz/admin2/regions/1657791957andijon-e1633416272681.jpg'),
-(22, 'Buxoro', '2022-06-09 01:52:31', '2022-07-14 09:45:37', 'Bukhara', 'Бухара', 'http://ali98.uz/admin2/regions/16577919375e56562fe6430590498576.jpg'),
-(23, 'Farg\'ona', '2022-06-09 01:53:05', '2022-07-14 09:45:13', 'Фергана', 'Fergana', 'http://ali98.uz/admin2/regions/1657791913fargona-vodiysi-opt.jpg'),
-(24, 'Jizzax', '2022-06-09 01:53:31', '2022-07-14 09:41:39', 'Jizzax', 'Джизакс', 'http://ali98.uz/admin2/regions/1657791699photo_2022-07-12_12-27-03.jpg'),
-(25, 'Xorazm', '2022-06-09 01:53:39', '2022-07-14 09:41:10', 'Khorezm', 'Хорезм', 'http://ali98.uz/admin2/regions/1657791670photo_2022-07-12_12-27-05 (2).jpg'),
-(26, 'Namangan', '2022-06-09 01:54:53', '2022-07-14 09:40:41', 'Namangan', 'Наманган', 'http://ali98.uz/admin2/regions/1657791641photo_2022-07-12_12-27-06 (2).jpg'),
-(27, 'Navoiy', '2022-06-09 01:55:12', '2022-07-14 09:40:24', 'Navoi', 'Навои', 'http://ali98.uz/admin2/regions/1657791624photo_2022-07-12_12-27-10.jpg'),
-(28, 'Qashqadaryo', '2022-06-09 01:55:25', '2022-07-14 09:40:11', 'Qashqadaryo', 'Кашкадарья', 'http://ali98.uz/admin2/regions/1657791611photo_2022-07-12_12-27-10 (2).jpg'),
-(29, 'Qoraqalpog\'iston Respublikasi', '2022-06-09 01:55:46', '2022-07-14 09:39:43', 'The Republic of Karakalpakstan', 'Республика Каракалпакстан', 'http://ali98.uz/admin2/regions/1657791583photo_2022-07-12_12-27-05.jpg'),
-(30, 'Samarqand', '2022-06-09 01:55:55', '2022-07-14 09:39:24', 'Samarkand', 'Самарканд', 'http://ali98.uz/admin2/regions/1657791564photo_2022-07-12_12-27-07 (2).jpg'),
-(31, 'Sirdaryo', '2022-06-09 01:56:23', '2022-07-14 09:39:07', NULL, NULL, 'http://ali98.uz/admin2/regions/1657791547photo_2022-07-12_12-27-06 (2).jpg'),
-(32, 'Surxondaryo', '2022-06-09 01:56:39', '2022-07-14 09:38:48', NULL, NULL, 'http://ali98.uz/admin2/regions/1657791528photo_2022-07-12_12-27-03 (2).jpg'),
-(33, 'Toshkent', '2022-06-09 01:57:39', '2022-07-14 09:38:26', NULL, NULL, 'http://ali98.uz/admin2/regions/1657791506photo_2022-07-12_12-27-08.jpg');
+(21, 'Andijon', '2022-06-09 01:52:05', '2025-12-14 18:10:18', 'Andijon', 'Андижан', 'regions/EmyDGYT3eBeQWxM2G1HTkEXmipKT1Wtuos7bgwyv.webp'),
+(22, 'Buxoro', '2022-06-09 01:52:31', '2025-12-14 18:09:36', 'Bukhara', 'Бухара', 'regions/dHodASMMb2BAsDZ5TfPcKE2cBKncQt5Grmr3G90w.jpg'),
+(23, 'Farg\'ona', '2022-06-09 01:53:05', '2025-12-14 18:09:11', 'Фергана', 'Fergana', 'regions/Ha1yyHZmMIHj4REeq2vV4RD3RTugaa759VhP1P0Q.jpg'),
+(24, 'Jizzax', '2022-06-09 01:53:31', '2025-12-14 18:08:25', 'Jizzax', 'Джизакс', 'regions/U8nW1XQSz1O5SlNKnazxTbLzDDwExkZEn71CFu3X.jpg'),
+(25, 'Xorazm', '2022-06-09 01:53:39', '2025-12-14 18:07:36', 'Khorezm', 'Хорезм', 'regions/o30rYnk4JCZERpdbDeUVrH96vXdUokKWaznPH6fs.webp'),
+(26, 'Namangan', '2022-06-09 01:54:53', '2025-12-14 18:07:04', 'Namangan', 'Наманган', 'regions/CI3jrFffdo14xAK4mUprQn7h02UfW2pwVyFv3TC9.jpg'),
+(27, 'Navoiy', '2022-06-09 01:55:12', '2025-12-14 18:06:07', 'Navoi', 'Навои', 'regions/rZqnK7kl7UFxZ32OLFNTTNJxkNhC0aMFlKoGnaBe.jpg'),
+(28, 'Qashqadaryo', '2022-06-09 01:55:25', '2025-12-14 18:05:37', 'Qashqadaryo', 'Кашкадарья', 'regions/83VpZ7B4SXwewaKwTk1QekhAcLwMZo1BLgDDMTAf.jpg'),
+(29, 'Qoraqalpog\'iston Respublikasi', '2022-06-09 01:55:46', '2025-12-14 18:04:47', 'The Republic of Karakalpakstan', 'Республика Каракалпакстан', 'regions/u1NtFyhjp2w2VkxY6csJavklvQgFNasJLrU4kaxe.jpg'),
+(30, 'Samarqand', '2022-06-09 01:55:55', '2025-12-14 18:03:12', 'Samarkand', 'Самарканд', 'regions/CHFSEIHuvVOZEvQHfuluZtO2xEDzZuBV3zDcUFfP.jpg'),
+(31, 'Sirdaryo', '2022-06-09 01:56:23', '2025-12-15 17:04:04', 'Sirdaryo', 'Sirdaryo', 'regions/QIM3c2k1j3LeFv5ZWQ959sqexe2Mk4cVCyfQWmKD.jpg'),
+(32, 'Surxondaryo', '2022-06-09 01:56:39', '2025-12-15 17:03:48', 'Surxondaryo', 'Surxondaryo', 'regions/Pjnf5xORGkIichO80ukMJkbAc2GGSjiRHEQEWCR1.jpg'),
+(33, 'Toshkent', '2022-06-09 01:57:39', '2025-12-15 17:04:35', 'Tashkent', 'Toshkent', 'regions/vaPSotbxF1BUMqO3aC2fVHWx2PSF64wyvDG8j1eg.webp');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `repairs`
+-- Table structure for table `repairs`
 --
 
 CREATE TABLE `repairs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name_uz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name_uz` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_ru` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `name_en` varchar(255) DEFAULT NULL,
+  `name_ru` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `repairs`
+-- Dumping data for table `repairs`
 --
 
 INSERT INTO `repairs` (`id`, `name_uz`, `created_at`, `updated_at`, `name_en`, `name_ru`) VALUES
@@ -1790,7 +1855,7 @@ INSERT INTO `repairs` (`id`, `name_uz`, `created_at`, `updated_at`, `name_en`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `retings`
+-- Table structure for table `retings`
 --
 
 CREATE TABLE `retings` (
@@ -1799,13 +1864,13 @@ CREATE TABLE `retings` (
   `user_id` int(11) DEFAULT NULL,
   `post_id` int(11) DEFAULT NULL,
   `reting` int(11) DEFAULT NULL,
-  `comment` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `comment` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `retings`
+-- Dumping data for table `retings`
 --
 
 INSERT INTO `retings` (`id`, `author`, `user_id`, `post_id`, `reting`, `comment`, `created_at`, `updated_at`) VALUES
@@ -1825,19 +1890,19 @@ INSERT INTO `retings` (`id`, `author`, `user_id`, `post_id`, `reting`, `comment`
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `roles`
+-- Table structure for table `roles`
 --
 
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
@@ -1850,7 +1915,7 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VAL
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `role_has_permissions`
+-- Table structure for table `role_has_permissions`
 --
 
 CREATE TABLE `role_has_permissions` (
@@ -1859,7 +1924,7 @@ CREATE TABLE `role_has_permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `role_has_permissions`
+-- Dumping data for table `role_has_permissions`
 --
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
@@ -2061,21 +2126,21 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `sales`
+-- Table structure for table `sales`
 --
 
 CREATE TABLE `sales` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name_uz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_uz` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_ru` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `name_en` varchar(255) DEFAULT NULL,
+  `name_ru` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `sales`
+-- Dumping data for table `sales`
 --
 
 INSERT INTO `sales` (`id`, `name_uz`, `icon`, `created_at`, `updated_at`, `name_en`, `name_ru`) VALUES
@@ -2085,44 +2150,48 @@ INSERT INTO `sales` (`id`, `name_uz`, `icon`, `created_at`, `updated_at`, `name_
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `sliders`
+-- Table structure for table `sliders`
 --
 
 CREATE TABLE `sliders` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title_uz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title_uz` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `title_ru` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `title_en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `title_ru` varchar(255) DEFAULT NULL,
+  `title_en` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `sliders`
+-- Dumping data for table `sliders`
 --
 
 INSERT INTO `sliders` (`id`, `title_uz`, `image`, `status`, `created_at`, `updated_at`, `title_ru`, `title_en`) VALUES
-(8, NULL, 'http://ali98.uz/admin2/sliders/1657003147home-hero 1.jpg', '1', '2022-07-05 01:39:07', '2022-07-05 01:39:07', NULL, NULL),
-(9, NULL, 'http://ali98.uz/admin2/sliders/1657003162home-hero-1.jpg', '1', '2022-07-05 01:39:22', '2022-07-05 01:39:22', NULL, NULL);
+(8, 'Golden House', 'sliders/ap9YndF2247nOScgCBjXVBCdOOXOzHQ3KDmQDOOO.jpg', '1', '2022-07-05 01:39:07', '2025-12-15 08:04:05', 'Golden House', 'Golden House'),
+(9, 'Murad Buildings', 'sliders/xSBdxe1IGIUweuV8IPtacS2Pv6cRJ7bHmQR6HjfY.jpg', '1', '2022-07-05 01:39:22', '2025-12-15 08:01:35', 'Murad Buildings', 'Murad Buildings'),
+(12, 'KHON SAROY', 'sliders/z13jOsMEHNXT9yKtltsAC3LbJC5Ci9mWWuUhHsOW.webp', '1', '2025-12-15 08:05:06', '2025-12-15 08:05:06', 'KHON SAROY', 'KHON SAROY'),
+(13, 'UET Construction', 'sliders/eshC81eF1cPOHp4AM77c23t5wKKzc4ACQoyGfzvh.svg', '1', '2025-12-15 08:07:25', '2025-12-15 08:07:25', 'UET Construction', 'UET Construction'),
+(14, 'MESMER', 'sliders/cDzj29xH54HXhkbsCN8F5K6E5zODhAdsLRnHMggi.png', '1', '2025-12-15 08:08:16', '2025-12-15 08:08:16', 'MESMER', 'MESMER'),
+(15, 'Kam Construction Company', 'sliders/eVRDzkB2tUuEpoPcriVfu451QqrpBSvmleKtcOjh.png', '1', '2025-12-15 08:11:23', '2025-12-15 08:11:23', 'Kam Construction Company', 'Kam Construction Company');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `s_m_s`
+-- Table structure for table `s_m_s`
 --
 
 CREATE TABLE `s_m_s` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `s_m_s`
+-- Dumping data for table `s_m_s`
 --
 
 INSERT INTO `s_m_s` (`id`, `name`, `code`, `created_at`, `updated_at`) VALUES
@@ -2190,28 +2259,29 @@ INSERT INTO `s_m_s` (`id`, `name`, `code`, `created_at`, `updated_at`) VALUES
 (179, '1234', 'wqK1', '2022-07-16 12:47:43', '2022-07-16 12:47:43'),
 (180, '12345', 'D6B6', '2022-07-16 12:59:16', '2022-07-16 12:59:16'),
 (181, 'Galaxy0900', '0MxC', '2022-07-18 10:23:28', '2022-07-18 10:23:28'),
-(182, '+998908760021', '0jU5', '2022-07-18 20:17:37', '2022-07-18 20:18:44');
+(182, '+998908760021', '0jU5', '2022-07-18 20:17:37', '2022-07-18 20:18:44'),
+(183, 'mail', 'qvB3', '2025-12-14 18:45:32', '2025-12-14 18:45:32');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `image`) VALUES
@@ -2219,24 +2289,25 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (3, 'Afeme', 'afeme@afeme.com', NULL, '$2y$10$OBS1jMHvjJdhgLwXzIj7/eP9jrAvZPVvnfpmA3Inu4a8FSZTcE.0O', '7mN5F0U3WWL4sauQ9QvtsAOLDxGrpYCWKKlPgGNOAd5k092wB6lqXFnFIQjh', '2022-02-15 02:52:10', '2022-07-14 05:11:51', '1657775511photo_2022-07-12_14-50-50.jpg'),
 (4, 'Feya', 'Tahrirlovchi@Tahrirlovchi.com', NULL, '$2y$10$VFNcS5cTe/7Sj3yluO32Jud4N6ujuxZu0arJhUqoSXZcwtadsuYk2', NULL, '2022-02-15 02:53:48', '2022-07-14 05:13:04', '16577755841652869548user-2.png'),
 (16, 'Ali', 'Ochiruvchi@Ochiruvchi.com', NULL, '$2y$10$fX3mTqGqrFLSlfZSu72ER.Al5ioBhmAGjRdiBs8yNulMDeO0yoHka', NULL, '2022-03-03 09:33:30', '2022-07-14 05:13:13', '16577755931652869613user-8.png'),
-(29, 'Alex', 'user@user.com', NULL, '$2y$10$RusxTgN3KBPMMj1SAfVfku/h6XtIlNfP39.mg//Y5u//TV/iaBSfO', NULL, '2022-06-16 05:25:19', '2022-07-14 06:18:01', '16577794811652869651user-4.png');
+(29, 'Alex', 'user@user.com', NULL, '$2y$10$RusxTgN3KBPMMj1SAfVfku/h6XtIlNfP39.mg//Y5u//TV/iaBSfO', NULL, '2022-06-16 05:25:19', '2022-07-14 06:18:01', '16577794811652869651user-4.png'),
+(38, 'Suyunbek', 'mail@mail.com', NULL, '$2y$10$EjpWNVGYVoHtBiskE5B9TO2R7WLVuIsdqhogsQ3iYgtXVz6DQz9zO', NULL, '2025-12-15 06:46:53', '2025-12-15 06:46:53', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `videos`
+-- Table structure for table `videos`
 --
 
 CREATE TABLE `videos` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `post_id` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `videos`
+-- Dumping data for table `videos`
 --
 
 INSERT INTO `videos` (`id`, `url`, `post_id`, `created_at`, `updated_at`) VALUES
@@ -2255,182 +2326,182 @@ INSERT INTO `videos` (`id`, `url`, `post_id`, `created_at`, `updated_at`) VALUES
 (165, 'input type = file, name = file. bo\'lishi kerak', '514', '2022-07-18 07:17:52', '2022-07-18 07:17:52');
 
 --
--- Индексы сохранённых таблиц
+-- Indexes for dumped tables
 --
 
 --
--- Индексы таблицы `addresses`
+-- Indexes for table `addresses`
 --
 ALTER TABLE `addresses`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `advertisements`
+-- Indexes for table `advertisements`
 --
 ALTER TABLE `advertisements`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `areas`
+-- Indexes for table `areas`
 --
 ALTER TABLE `areas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `cities`
+-- Indexes for table `cities`
 --
 ALTER TABLE `cities`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `clients`
+-- Indexes for table `clients`
 --
 ALTER TABLE `clients`
   ADD PRIMARY KEY (`id`),
   ADD KEY `phone` (`phone`);
 
 --
--- Индексы таблицы `comments`
+-- Indexes for table `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `documents`
+-- Indexes for table `documents`
 --
 ALTER TABLE `documents`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Индексы таблицы `images`
+-- Indexes for table `images`
 --
 ALTER TABLE `images`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `likes`
+-- Indexes for table `likes`
 --
 ALTER TABLE `likes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `logos`
+-- Indexes for table `logos`
 --
 ALTER TABLE `logos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `materials`
+-- Indexes for table `materials`
 --
 ALTER TABLE `materials`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `messages`
+-- Indexes for table `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `model_has_permissions`
+-- Indexes for table `model_has_permissions`
 --
 ALTER TABLE `model_has_permissions`
   ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
   ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
--- Индексы таблицы `model_has_roles`
+-- Indexes for table `model_has_roles`
 --
 ALTER TABLE `model_has_roles`
   ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
   ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
--- Индексы таблицы `networks`
+-- Indexes for table `networks`
 --
 ALTER TABLE `networks`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `oauth_access_tokens`
+-- Indexes for table `oauth_access_tokens`
 --
 ALTER TABLE `oauth_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD KEY `oauth_access_tokens_user_id_index` (`user_id`);
 
 --
--- Индексы таблицы `oauth_auth_codes`
+-- Indexes for table `oauth_auth_codes`
 --
 ALTER TABLE `oauth_auth_codes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `oauth_auth_codes_user_id_index` (`user_id`);
 
 --
--- Индексы таблицы `oauth_clients`
+-- Indexes for table `oauth_clients`
 --
 ALTER TABLE `oauth_clients`
   ADD PRIMARY KEY (`id`),
   ADD KEY `oauth_clients_user_id_index` (`user_id`);
 
 --
--- Индексы таблицы `oauth_personal_access_clients`
+-- Indexes for table `oauth_personal_access_clients`
 --
 ALTER TABLE `oauth_personal_access_clients`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `oauth_refresh_tokens`
+-- Indexes for table `oauth_refresh_tokens`
 --
 ALTER TABLE `oauth_refresh_tokens`
   ADD PRIMARY KEY (`id`),
   ADD KEY `oauth_refresh_tokens_access_token_id_index` (`access_token_id`);
 
 --
--- Индексы таблицы `partnericons`
+-- Indexes for table `partnericons`
 --
 ALTER TABLE `partnericons`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `partners`
+-- Indexes for table `partners`
 --
 ALTER TABLE `partners`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Индексы таблицы `permissions`
+-- Indexes for table `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
 
 --
--- Индексы таблицы `personal_access_tokens`
+-- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -2438,300 +2509,300 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Индексы таблицы `potpiskas`
+-- Indexes for table `potpiskas`
 --
 ALTER TABLE `potpiskas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `regions`
+-- Indexes for table `regions`
 --
 ALTER TABLE `regions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `repairs`
+-- Indexes for table `repairs`
 --
 ALTER TABLE `repairs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `retings`
+-- Indexes for table `retings`
 --
 ALTER TABLE `retings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `roles`
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
 
 --
--- Индексы таблицы `role_has_permissions`
+-- Indexes for table `role_has_permissions`
 --
 ALTER TABLE `role_has_permissions`
   ADD PRIMARY KEY (`permission_id`,`role_id`),
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
--- Индексы таблицы `sales`
+-- Indexes for table `sales`
 --
 ALTER TABLE `sales`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `sliders`
+-- Indexes for table `sliders`
 --
 ALTER TABLE `sliders`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `s_m_s`
+-- Indexes for table `s_m_s`
 --
 ALTER TABLE `s_m_s`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Индексы таблицы `videos`
+-- Indexes for table `videos`
 --
 ALTER TABLE `videos`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT для сохранённых таблиц
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT для таблицы `addresses`
+-- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT для таблицы `advertisements`
+-- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT для таблицы `areas`
+-- AUTO_INCREMENT for table `areas`
 --
 ALTER TABLE `areas`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT для таблицы `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
--- AUTO_INCREMENT для таблицы `cities`
+-- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
--- AUTO_INCREMENT для таблицы `clients`
+-- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=449;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=450;
 
 --
--- AUTO_INCREMENT для таблицы `comments`
+-- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `documents`
+-- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT для таблицы `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `images`
+-- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=649;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=731;
 
 --
--- AUTO_INCREMENT для таблицы `likes`
+-- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=336;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=337;
 
 --
--- AUTO_INCREMENT для таблицы `logos`
+-- AUTO_INCREMENT for table `logos`
 --
 ALTER TABLE `logos`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT для таблицы `materials`
+-- AUTO_INCREMENT for table `materials`
 --
 ALTER TABLE `materials`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT для таблицы `messages`
+-- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
 
 --
--- AUTO_INCREMENT для таблицы `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT для таблицы `networks`
+-- AUTO_INCREMENT for table `networks`
 --
 ALTER TABLE `networks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT для таблицы `oauth_clients`
+-- AUTO_INCREMENT for table `oauth_clients`
 --
 ALTER TABLE `oauth_clients`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT для таблицы `oauth_personal_access_clients`
+-- AUTO_INCREMENT for table `oauth_personal_access_clients`
 --
 ALTER TABLE `oauth_personal_access_clients`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT для таблицы `partnericons`
+-- AUTO_INCREMENT for table `partnericons`
 --
 ALTER TABLE `partnericons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT для таблицы `partners`
+-- AUTO_INCREMENT for table `partners`
 --
 ALTER TABLE `partners`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT для таблицы `permissions`
+-- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
--- AUTO_INCREMENT для таблицы `personal_access_tokens`
+-- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `potpiskas`
+-- AUTO_INCREMENT for table `potpiskas`
 --
 ALTER TABLE `potpiskas`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=515;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=530;
 
 --
--- AUTO_INCREMENT для таблицы `regions`
+-- AUTO_INCREMENT for table `regions`
 --
 ALTER TABLE `regions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
--- AUTO_INCREMENT для таблицы `repairs`
+-- AUTO_INCREMENT for table `repairs`
 --
 ALTER TABLE `repairs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT для таблицы `retings`
+-- AUTO_INCREMENT for table `retings`
 --
 ALTER TABLE `retings`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
--- AUTO_INCREMENT для таблицы `roles`
+-- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT для таблицы `sales`
+-- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT для таблицы `sliders`
+-- AUTO_INCREMENT for table `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT для таблицы `s_m_s`
+-- AUTO_INCREMENT for table `s_m_s`
 --
 ALTER TABLE `s_m_s`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 
 --
--- AUTO_INCREMENT для таблицы `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
--- AUTO_INCREMENT для таблицы `videos`
+-- AUTO_INCREMENT for table `videos`
 --
 ALTER TABLE `videos`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 
 --
--- Ограничения внешнего ключа сохраненных таблиц
+-- Constraints for dumped tables
 --
 
 --
--- Ограничения внешнего ключа таблицы `model_has_permissions`
+-- Constraints for table `model_has_permissions`
 --
 ALTER TABLE `model_has_permissions`
   ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `model_has_roles`
+-- Constraints for table `model_has_roles`
 --
 ALTER TABLE `model_has_roles`
   ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `role_has_permissions`
+-- Constraints for table `role_has_permissions`
 --
 ALTER TABLE `role_has_permissions`
   ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,

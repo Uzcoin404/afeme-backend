@@ -89,6 +89,7 @@ Route::get('robots.txt', function () {
 
     return Response::make($content, 200, [
         'Content-Type' => 'text/plain',
+        'X-Robots-Tag' => 'noindex', // no search engine indexing
     ]);
 });
 
